@@ -1,6 +1,6 @@
 {
   "name": "sqh-cli-dev",
-  "version": "1.0.0",
+  "version": "0.0.0",
   "description": "sqh-cli dev",
   "main": "index.js",
   "scripts": {
