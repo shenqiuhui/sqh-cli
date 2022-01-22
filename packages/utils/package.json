@@ -1,7 +1,7 @@
 {
-  "name": "@sqh-cli-dev/utils",
+  "name": "@sqh-cli/utils",
   "version": "1.0.0",
-  "description": "sqh-cli-dev utils",
+  "description": "sqh-cli utils",
   "author": "ShenQiuhui <pandashen821@163.com>",
   "homepage": "",
   "license": "ISC",
