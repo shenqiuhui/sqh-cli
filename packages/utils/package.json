@@ -1,0 +1,19 @@
+{
+  "name": "@sqh-cli-dev/utils",
+  "version": "1.0.0",
+  "description": "sqh-cli-dev utils",
+  "author": "ShenQiuhui <pandashen821@163.com>",
+  "homepage": "",
+  "license": "ISC",
+  "main": "lib/index.js",
+  "directories": {
+    "lib": "lib",
+    "test": "__tests__"
+  },
+  "files": [
+    "lib"
+  ],
+  "scripts": {
+    "test": "echo \"Run testing from utils\""
+  }
+}
