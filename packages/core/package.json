@@ -20,7 +20,7 @@
     "test": "echo \"Run testing from core\""
   },
   "dependencies": {
-    "@sqh-cli-dev/utils": "^1.0.0"
+    "@sqh-cli-dev/utils": "file:../utils"
   },
   "publishConfig": {
     "access": "public"
