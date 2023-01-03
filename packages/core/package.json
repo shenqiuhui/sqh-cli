@@ -1,6 +1,6 @@
 {
   "name": "@sqh-cli/core",
-  "version": "0.0.1",
+  "version": "0.0.2-alpha.0",
   "description": "sqh-cli core",
   "author": "shenqiuhui",
   "homepage": "",
@@ -23,6 +23,6 @@
     "access": "public"
   },
   "dependencies": {
-    "@sqh-cli/utils": "^0.0.1"
+    "@sqh-cli/utils": "^0.0.2-alpha.0"
   }
 }
