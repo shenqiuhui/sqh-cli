@@ -1,6 +1,6 @@
 {
   "name": "sqh-cli-dev",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "sqh-cli dev",
   "main": "index.js",
   "scripts": {
@@ -10,6 +10,6 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "lerna": "^4.0.0"
+    "lerna": "^6.3.0"
   }
 }

@@ -7,4 +7,7 @@ package-lock.json
 yarn.lock
 
 packages/**/node_modules
+packages/**/pnpm-lock.yaml
+packages/**/package-lock.json
+packages/**/yarn.lock
 lerna-debug.log
