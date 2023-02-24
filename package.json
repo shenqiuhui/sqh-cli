@@ -1,14 +1,11 @@
 {
-  "name": "sqh-cli-dev",
+  "name": "sqh-cli",
   "version": "0.0.1",
-  "description": "sqh-cli dev",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
+  "description": "sqh-cli",
   "keywords": [],
-  "author": "",
+  "author": "shenqiuhui",
   "license": "ISC",
+  "private": true,
   "devDependencies": {
     "lerna": "^6.3.0"
   }

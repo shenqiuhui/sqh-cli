@@ -1,0 +1,34 @@
+{
+  "name": "@sqh-cli/get-npm-info",
+  "version": "0.0.1-alpha.0",
+  "description": "get npm info",
+  "author": "shenqiuhui",
+  "homepage": "https://github.com/shenqiuhui/sqh-cli#readme",
+  "license": "ISC",
+  "main": "lib/index.js",
+  "directories": {
+    "lib": "lib",
+    "test": "__tests__"
+  },
+  "files": [
+    "lib"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shenqiuhui/sqh-cli.git"
+  },
+  "scripts": {
+    "test": "node ./__tests__/@sqh-cli/get-npm-info.test.js"
+  },
+  "bugs": {
+    "url": "https://github.com/shenqiuhui/sqh-cli/issues"
+  },
+  "dependencies": {
+    "@sqh-cli/request": "file:../request",
+    "semver": "^7.3.8",
+    "url-join": "^4.0.0"
+  }
+}

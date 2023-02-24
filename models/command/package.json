@@ -1,0 +1,33 @@
+{
+  "name": "@sqh-cli/command",
+  "version": "0.0.1-alpha.0",
+  "description": "sqh-cli command",
+  "author": "shenqiuhui",
+  "homepage": "https://github.com/shenqiuhui/sqh-cli#readme",
+  "license": "ISC",
+  "main": "lib/index.js",
+  "directories": {
+    "lib": "lib",
+    "test": "__tests__"
+  },
+  "files": [
+    "lib"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shenqiuhui/sqh-cli.git"
+  },
+  "scripts": {
+    "test": "node ./__tests__/@sqh-cli/command.test.js"
+  },
+  "bugs": {
+    "url": "https://github.com/shenqiuhui/sqh-cli/issues"
+  },
+  "dependencies": {
+    "@sqh-cli/utils": "file:../../kits/utils",
+    "semver": "^7.3.8"
+  }
+}

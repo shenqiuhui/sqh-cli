@@ -1,0 +1,40 @@
+{
+  "name": "@sqh-cli/package",
+  "version": "0.0.1-alpha.0",
+  "description": "sqh-cli npm modules",
+  "author": "shenqiuhui",
+  "homepage": "https://github.com/shenqiuhui/sqh-cli#readme",
+  "license": "ISC",
+  "main": "lib/index.js",
+  "directories": {
+    "lib": "lib",
+    "test": "__tests__"
+  },
+  "files": [
+    "lib"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shenqiuhui/sqh-cli.git"
+  },
+  "scripts": {
+    "test": "node ./__tests__/@sqh-cli/package.test.js"
+  },
+  "bugs": {
+    "url": "https://github.com/shenqiuhui/sqh-cli/issues"
+  },
+  "dependencies": {
+    "@sqh-cli/get-npm-info": "file:../../kits/get-npm-info",
+    "@sqh-cli/utils": "file:../../kits/utils",
+    "@sqh-cli/log": "file:../../kits/log",
+    "fs-extra": "^11.1.0",
+    "inquirer": "8.2.5",
+    "npminstall": "^7.4.1",
+    "path-exists": "^4.0.0",
+    "pkg-dir": "^5.0.0",
+    "semver": "^7.3.8"
+  }
+}
