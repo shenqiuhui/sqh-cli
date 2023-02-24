@@ -2,7 +2,16 @@
 
 此项目所有的变更都在该文件中维护。
 
-## [@sqh-cli/core@0.0.3](https://github.com/shenqiuhui/sqh-cli/tree/%40sqh-cli/core%400.0.3) (2023-02-25)
+## [v0.0.4](https://github.com/shenqiuhui/sqh-cli/tree/v0.0.4) (2023-02-25)
+
+- **publish:** @sqh-cli/init@0.0.3
+- **publish:** @sqh-cli/core@0.0.4
+- **publish:** @sqh-cli/exec@0.0.3
+- **publish:** @sqh-cli/get-npm-info@0.0.3
+- **publish:** @sqh-cli/package@0.0.3
+- **feat:** 修改 @sqh-cli/get-npm-info 接口源
+
+## [v0.0.3](https://github.com/shenqiuhui/sqh-cli/tree/%40sqh-cli/core%400.0.3) (2023-02-25)
 
 - **publish:** @sqh-cli/core@0.0.3
 - fix: 修改 lerna.json
