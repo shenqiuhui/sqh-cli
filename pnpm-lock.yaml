@@ -4861,7 +4861,7 @@ packages:
   file:core/exec:
     resolution: {directory: core/exec, type: directory}
     name: '@sqh-cli/exec'
-    version: 0.0.2
+    version: 0.0.3
     dependencies:
       '@sqh-cli/log': file:kits/log
       '@sqh-cli/package': file:models/package
@@ -4875,7 +4875,7 @@ packages:
   file:kits/get-npm-info:
     resolution: {directory: kits/get-npm-info, type: directory}
     name: '@sqh-cli/get-npm-info'
-    version: 0.0.2
+    version: 0.0.3
     dependencies:
       '@sqh-cli/request': file:kits/request
       semver: 7.3.8
@@ -4925,7 +4925,7 @@ packages:
   file:models/package:
     resolution: {directory: models/package, type: directory}
     name: '@sqh-cli/package'
-    version: 0.0.2
+    version: 0.0.3
     dependencies:
       '@sqh-cli/get-npm-info': file:kits/get-npm-info
       '@sqh-cli/log': file:kits/log
