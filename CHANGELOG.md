@@ -11,7 +11,7 @@
 - **publish:** @sqh-cli/package@0.0.3
 - **feat:** 修改 @sqh-cli/get-npm-info 接口源
 
-## [v0.0.3](https://github.com/shenqiuhui/sqh-cli/tree/%40sqh-cli/core%400.0.3) (2023-02-25)
+## [v0.0.3](https://github.com/shenqiuhui/sqh-cli/tree/v0.0.3) (2023-02-25)
 
 - **publish:** @sqh-cli/core@0.0.3
 - fix: 修改 lerna.json
