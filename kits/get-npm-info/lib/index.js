@@ -26,7 +26,7 @@ async function getNpmInfo(npmName, registry) {
   return data;
 }
 
-function getDefaultRegistry(isOriginal = true) {
+function getDefaultRegistry(isOriginal = false) {
   return isOriginal ? 'https://registry.npmjs.org' : 'https://registry.npm.taobao.org';
 }
 
