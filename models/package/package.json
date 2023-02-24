@@ -1,6 +1,6 @@
 {
   "name": "@sqh-cli/package",
-  "version": "0.0.1-alpha.0",
+  "version": "0.0.2",
   "description": "sqh-cli npm modules",
   "author": "shenqiuhui",
   "homepage": "https://github.com/shenqiuhui/sqh-cli#readme",
@@ -28,8 +28,8 @@
   },
   "dependencies": {
     "@sqh-cli/get-npm-info": "file:../../kits/get-npm-info",
-    "@sqh-cli/utils": "file:../../kits/utils",
     "@sqh-cli/log": "file:../../kits/log",
+    "@sqh-cli/utils": "file:../../kits/utils",
     "fs-extra": "^11.1.0",
     "inquirer": "8.2.5",
     "npminstall": "^7.4.1",

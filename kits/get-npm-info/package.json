@@ -1,6 +1,6 @@
 {
   "name": "@sqh-cli/get-npm-info",
-  "version": "0.0.1-alpha.0",
+  "version": "0.0.2",
   "description": "get npm info",
   "author": "shenqiuhui",
   "homepage": "https://github.com/shenqiuhui/sqh-cli#readme",

@@ -1,6 +1,6 @@
 {
   "name": "@sqh-cli/core",
-  "version": "0.0.2-alpha.0",
+  "version": "0.0.2",
   "description": "sqh-cli core",
   "author": "shenqiuhui",
   "homepage": "",
@@ -26,7 +26,7 @@
     "@sqh-cli/exec": "file:../exec",
     "@sqh-cli/get-npm-info": "file:../../kits/get-npm-info",
     "@sqh-cli/log": "file:../../kits/log",
-    "@sqh-cli/utils": "workspace:0.0.2-alpha.0",
+    "@sqh-cli/utils": "workspace:0.0.2",
     "chalk": "^4.1.2",
     "commander": "^10.0.0",
     "dedent": "^0.7.0",

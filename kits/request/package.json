@@ -1,6 +1,6 @@
 {
   "name": "@sqh-cli/request",
-  "version": "0.0.1-alpha.0",
+  "version": "0.0.2",
   "description": "sqh-cli request tool",
   "author": "shenqiuhui",
   "homepage": "https://github.com/shenqiuhui/sqh-cli#readme",
