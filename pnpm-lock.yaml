@@ -41,12 +41,28 @@ importers:
   commands/list:
     specifiers:
       '@sqh-cli/command': file:../../models/command
+      '@sqh-cli/get-template-info': file:../../kits/get-template-info
       '@sqh-cli/log': file:../../kits/log
       '@sqh-cli/utils': file:../../kits/utils
     dependencies:
       '@sqh-cli/command': file:models/command
+      '@sqh-cli/get-template-info': file:kits/get-template-info
       '@sqh-cli/log': file:kits/log
       '@sqh-cli/utils': file:kits/utils
+
+  commands/list-template:
+    specifiers:
+      '@sqh-cli/command': file:../../models/command
+      '@sqh-cli/get-template-info': file:../../kits/get-template-info
+      '@sqh-cli/log': file:../../kits/log
+      '@sqh-cli/utils': file:../../kits/utils
+      chalk: 4.1.2
+    dependencies:
+      '@sqh-cli/command': file:models/command
+      '@sqh-cli/get-template-info': file:kits/get-template-info
+      '@sqh-cli/log': file:kits/log
+      '@sqh-cli/utils': file:kits/utils
+      chalk: 4.1.2
 
   core/cli:
     specifiers:

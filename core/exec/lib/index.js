@@ -7,7 +7,8 @@ const { errorLogProcess, spinnerStart, spawn } = require('@sqh-cli/utils');
 
 // 命令对应的默认依赖名称
 const SETTINGS = {
-  init: '@sqh-cli/init'
+  'sqh-init': '@sqh-cli/init',
+  'sqh-list-template': '@sqh-cli/list-template'
 };
 
 // 缓存目录名称
@@ -22,8 +23,8 @@ async function exec() {
   const homePath = process.env.CLI_HOME_PATH;
   const debug = process.env.CLI_DEBUG_MODE;
   const cmdInstance = arguments[arguments.length - 1];
-  const cmdName = cmdInstance.name();
-  const packageName = SETTINGS[cmdName];
+  const commandChain = generateCommandChain(cmdInstance);
+  const packageName = SETTINGS[commandChain];
   const packageVersion = 'latest';
 
   log.verbose('debug: homePath', homePath);
@@ -86,12 +87,32 @@ async function exec() {
       });
 
       child.on('exit', function (exitCode) {
-        log.verbose('cli', `${cmdName} 命令执行成功`);
+        log.verbose('cli', `${commandChain.replace(/-/g, ' ')} 命令执行成功`);
         process.exit(exitCode);
       });
     }
   } catch (err) {
     errorLogProcess('cli', err, debug);
+  }
+}
+
+/**
+ * 递归获取命令的调用路径
+ *
+ * @param {object} program
+ * @param {Array<string>} [commands=[]]
+ * @returns string
+ */
+function generateCommandChain(program, commands = []) {
+  const command = program.name();
+  const parent = program.parent;
+
+  commands.push(command);
+
+  if (parent) {
+    return generateCommandChain(parent, commands);
+  } else {
+    return commands.reverse().join('-');
   }
 }
 

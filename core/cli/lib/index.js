@@ -52,54 +52,10 @@ async function prepare() {
  *
  */
 function registerCommand() {
-  program
-    .name(Object.keys(pkg.bin)[0])
-    .usage('<command> [options]')
-    .option('-d, --debug', '是否开启调试模式', false)
-    .option('-tp, --targetPath <targetPath>', '指定本地命令调试文件路径')
-    .version(pkg.version);
-
-  program
-    .on('--help', function () {
-      console.log();
-      console.log();
-      console.log(chalk.magentaBright(figlet.textSync('sqh!', {
-        font: 'Ghost'
-      })));
-      console.log();
-      console.log(`执行 ${chalk.cyanBright(`sqh <command> --help`)} 或 ${chalk.cyanBright(`sqh help <command>`)} 查看命令帮助文档`);
-    });
-
-  // 注册 init 命令
-  program
-    .command('init [projectName]')
-    .option('-f, --force', '是否强制初始化项目', false)
-    .option('--filter <templateType>', "过滤模板列表 ('normal'|'custom')")
-    .option('-tmp, --templatePath <templatePath>', '指定本地模板调试路径')
-    .action(exec);
-
-  // 监听调试模式
-  program.on('option:debug', function () {
-    setDebugEnv();
-    log.verbose('cli', chalk.cyanBright('开启调试模式'));
-  });
-
-  // 监听 targetPath 选项
-  program.on('option:targetPath', function () {
-    process.env.CLI_TARGET_PATH = args.targetPath;
-  });
-
-  // 监听未知命令
-  program.on('command:*', function (unknownCmd) {
-    log.error('cli', chalk.redBright(`未知的命令：${unknownCmd[0]}`));
-  });
-
-  program.parse(process.argv);
-
-  // 未输入命令打印帮助文档
-  if (program.args && program.args.length === 0) {
-    program.outputHelp();
-  }
+  registerMainCommand();
+  registerInitCommand();
+  registerListCommand();
+  watchOptionsAndCommands();
 }
 
 /**
@@ -185,10 +141,110 @@ async function checkGlobalUpdate() {
 
   if (latestVersion && semver.gt(latestVersion, currentVersion)) {
     log.warn('cli', chalk.yellowBright(dedent`
-      请手动更新 ${npmName}，当前版本：${currentVersion}，最新版本：${latestVersion}
+      ${npmName} 发现新版本 v${latestVersion}，当前版本为 v${currentVersion}
       更新命令：npm install -g ${npmName}
     `));
   } else {
     log.info('cli', currentVersion);
   }
+}
+
+/**
+ * 注册全局主命令
+ *
+ */
+function registerMainCommand() {
+  program
+    .name(Object.keys(pkg.bin)[0])
+    .usage('<command> [options]')
+    .option('-d, --debug', '是否开启调试模式', false)
+    .option('-tp, --targetPath <targetPath>', '指定本地命令调试文件路径')
+    .version(pkg.version);
+
+  commandsHelpTips(program, ['sqh']);
+}
+
+/**
+ * 注册 init 命令
+ *
+ */
+function registerInitCommand() {
+  program
+    .command('init [projectName]')
+    .description('初始化项目')
+    .option('-f, --force', '是否强制初始化项目', false)
+    .option('--filter <execType>', '过滤模板列表 "al"|"normal"|"custom"', 'normal')
+    .option('-tmp, --templatePath <templatePath>', '指定本地模板调试路径')
+    .action(exec);
+}
+
+/**
+ * 注册 list 命令
+ *
+ */
+function registerListCommand() {
+  const list = program
+    .command('list <command> [options]')
+    .usage('<command> [options]')
+    .description('根据命令查看列表');
+
+  list
+    .command('template')
+    .description('查看模板列表')
+    .option('-t, --type <templateType>', '查看模板列表 "al"|"project"|"component"', 'al')
+    .option('-f, --filter <execType>', '过滤模板列表 "al"|"normal"|"custom"', 'al')
+    .action(exec);
+
+  commandsHelpTips(list, ['sqh', 'list']);
+}
+
+/**
+ * 监听 Options 和 Commands
+ *
+ */
+function watchOptionsAndCommands() {
+  // 监听调试模式
+  program.on('option:debug', function () {
+    setDebugEnv();
+    log.verbose('cli', chalk.cyanBright('开启调试模式'));
+  });
+
+  // 监听 targetPath 选项
+  program.on('option:targetPath', function () {
+    process.env.CLI_TARGET_PATH = args.targetPath;
+  });
+
+  // 监听未知命令
+  program.on('command:*', function (unknownCmd) {
+    log.error('cli', chalk.redBright(`未知的命令：${unknownCmd[0]}`));
+  });
+
+  program.parse(process.argv);
+
+  // 未输入命令打印帮助文档
+  if (program.args && program.args.length === 0) {
+    program.outputHelp();
+  }
+}
+
+/**
+ * 命令的帮助文档提示
+ *
+ * @param {object} program
+ * @param {Array<string>} commands
+ */
+function commandsHelpTips(program, commands) {
+  const commandStr = commands.join(' ');
+  const searchCommand = commands.slice(-1);
+
+  program
+    .on('--help', function () {
+      console.log();
+      console.log();
+      console.log(chalk.magentaBright(figlet.textSync(`${searchCommand}!`, {
+        font: 'Ghost'
+      })));
+      console.log();
+      console.log(`执行 ${chalk.cyanBright(`${commandStr} <command> --help`)} 或 ${chalk.cyanBright(`${commandStr} help <command>`)} 查看命令帮助文档`);
+    });
 }

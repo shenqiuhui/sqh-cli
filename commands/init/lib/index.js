@@ -16,11 +16,13 @@ const { errorLogProcess, spinnerStart, spawnAsync } = require('@sqh-cli/utils');
 const { getProjectTemplates, getComponentTemplates } = require('@sqh-cli/get-template-info');
 
 const CACHE_DIR = 'templates'; // 缓存目录名称
+const ALL = 'al'; // 模板类型（全部）
 const TYPE_PROJECT = 'project'; // 模板类型（项目）
 const TYPE_COMPONENT = 'component'; // 模板类型（组件）
 const TEMPLATE_TYPE_NORMAL = 'normal'; // 模板类型（普通）
 const TEMPLATE_TYPE_CUSTOM = 'custom'; // 模板类型（自定义）
 const DEFAULT_IGNORE = ['**/node_modules/**', '**/public/**']; // 默认忽略编译的目录
+const FILTER_OPTION_VALUES = ['al', 'normal', 'custom']; // --filter 选项的值
 
 // 类型对应的名称映射
 const TYPE_NAME_MAP = {
@@ -37,7 +39,7 @@ class InitCommand extends Command {
   init() {
     this.initName = this._argv[0] || ''; // 初始化设置的项目名称
     this.force = !!this._opts.force; // 是否强制初始化
-    this.filter = this._opts.filter || ''; // 过滤模板
+    this.filter = this._opts.filter; // 过滤模板
     this.templatePath = this._opts.templatePath; // 本地模板路径
     this.templates = []; // 模板列表
     this.selectedTemplate = {}; // 选中的模板
@@ -46,6 +48,10 @@ class InitCommand extends Command {
 
     if (this.initName && !validate(this.initName).validForNewPackages) {
       throw new Error('非法的名称，规则请查看 https://www.npmjs.com/package/validate-npm-package-name');
+    }
+
+    if (!FILTER_OPTION_VALUES.includes(this.filter)) {
+      throw new Error('--filter 选项值错误，正确的值为 "al"|"normal"|"custom"');
     }
 
     log.verbose('debug: initName', this.initName);
@@ -242,10 +248,10 @@ class InitCommand extends Command {
     }
 
     if (!templates || templates.length === 0) {
-      throw Error('模板数据不存在！');
+      throw new Error('模板数据不存在！');
     }
 
-    if (this.filter) {
+    if (this.filter !== ALL) {
       return templates.filter((template) => template.type === this.filter);
     }
 

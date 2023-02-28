@@ -100,7 +100,7 @@ class Package {
           {
             type: 'confirm',
             name: 'isUpdate',
-            message: `${this.packageName} 发现新版本 ${this.packageVersion}，本地缓存版本为 ${this.currentPackageVersion}，是否更新？`
+            message: `${this.packageName} 发现新版本 v${this.packageVersion}，本地缓存版本为 v${this.currentPackageVersion}，是否更新？`
           }
         ]);
 
