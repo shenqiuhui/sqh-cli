@@ -73,7 +73,8 @@ function registerCommand() {
   // 注册 init 命令
   program
     .command('init [projectName]')
-    .option('-f, --force', '是否强制初始化项目')
+    .option('-f, --force', '是否强制初始化项目', false)
+    .option('--filter <templateType>', "过滤模板列表 ('normal'|'custom')")
     .option('-tmp, --templatePath <templatePath>', '指定本地模板调试路径')
     .action(exec);
 

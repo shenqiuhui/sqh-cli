@@ -37,6 +37,7 @@ class InitCommand extends Command {
   init() {
     this.initName = this._argv[0] || ''; // 初始化设置的项目名称
     this.force = !!this._opts.force; // 是否强制初始化
+    this.filter = this._opts.filter || ''; // 过滤模板
     this.templatePath = this._opts.templatePath; // 本地模板路径
     this.templates = []; // 模板列表
     this.selectedTemplate = {}; // 选中的模板
@@ -49,6 +50,7 @@ class InitCommand extends Command {
 
     log.verbose('debug: initName', this.initName);
     log.verbose('debug: force', this.force);
+    log.verbose('debug: filter', this.filter);
   }
 
   /**
@@ -241,6 +243,10 @@ class InitCommand extends Command {
 
     if (!templates || templates.length === 0) {
       throw Error('模板数据不存在！');
+    }
+
+    if (this.filter) {
+      return templates.filter((template) => template.type === this.filter);
     }
 
     return templates;
