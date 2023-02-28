@@ -11,9 +11,9 @@ importers:
   commands/init:
     specifiers:
       '@sqh-cli/command': file:../../models/command
+      '@sqh-cli/get-template-info': file:../../kits/get-template-info
       '@sqh-cli/log': file:../../kits/log
       '@sqh-cli/package': file:../../models/package
-      '@sqh-cli/request': file:../../kits/request
       '@sqh-cli/utils': file:../../kits/utils
       camelcase: ^6.3.0
       ejs: ^3.1.8
@@ -25,9 +25,9 @@ importers:
       validate-npm-package-name: ^5.0.0
     dependencies:
       '@sqh-cli/command': file:models/command
+      '@sqh-cli/get-template-info': file:kits/get-template-info
       '@sqh-cli/log': file:kits/log
       '@sqh-cli/package': file:models/package
-      '@sqh-cli/request': file:kits/request
       '@sqh-cli/utils': file:kits/utils
       camelcase: 6.3.0
       ejs: 3.1.8
@@ -37,6 +37,16 @@ importers:
       path-exists: 4.0.0
       semver: 7.3.8
       validate-npm-package-name: 5.0.0
+
+  commands/list:
+    specifiers:
+      '@sqh-cli/command': file:../../models/command
+      '@sqh-cli/log': file:../../kits/log
+      '@sqh-cli/utils': file:../../kits/utils
+    dependencies:
+      '@sqh-cli/command': file:models/command
+      '@sqh-cli/log': file:kits/log
+      '@sqh-cli/utils': file:kits/utils
 
   core/cli:
     specifiers:
@@ -89,6 +99,12 @@ importers:
       '@sqh-cli/request': file:kits/request
       semver: 7.3.8
       url-join: 4.0.1
+
+  kits/get-template-info:
+    specifiers:
+      '@sqh-cli/request': file:../../kits/request
+    dependencies:
+      '@sqh-cli/request': file:kits/request
 
   kits/log:
     specifiers:
@@ -4888,6 +4904,16 @@ packages:
       '@sqh-cli/request': file:kits/request
       semver: 7.3.8
       url-join: 4.0.1
+    transitivePeerDependencies:
+      - debug
+    dev: false
+
+  file:kits/get-template-info:
+    resolution: {directory: kits/get-template-info, type: directory}
+    name: '@sqh-cli/get-template-info'
+    version: 0.0.1
+    dependencies:
+      '@sqh-cli/request': file:kits/request
     transitivePeerDependencies:
       - debug
     dev: false

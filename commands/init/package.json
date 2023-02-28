@@ -30,7 +30,7 @@
     "@sqh-cli/command": "file:../../models/command",
     "@sqh-cli/log": "file:../../kits/log",
     "@sqh-cli/package": "file:../../models/package",
-    "@sqh-cli/request": "file:../../kits/request",
+    "@sqh-cli/get-template-info": "file:../../kits/get-template-info",
     "@sqh-cli/utils": "file:../../kits/utils",
     "camelcase": "^6.3.0",
     "ejs": "^3.1.8",

@@ -13,7 +13,7 @@ const Command = require('@sqh-cli/command');
 const Package = require('@sqh-cli/package');
 const log = require('@sqh-cli/log');
 const { errorLogProcess, spinnerStart, spawnAsync } = require('@sqh-cli/utils');
-const { getProjectTemplates, getComponentTemplates } = require('./apis');
+const { getProjectTemplates, getComponentTemplates } = require('@sqh-cli/get-template-info');
 
 const CACHE_DIR = 'templates'; // 缓存目录名称
 const TYPE_PROJECT = 'project'; // 模板类型（项目）
