@@ -61,7 +61,7 @@
 
 本地开发（项目/组件）模板的场景，用于指定命令执行时的本地文件路径。
 
-> sqh init [projectName] -templatePath=/Users/username/some-template
+> sqh init [projectName] --templatePath=/Users/username/some-template
 
 > sqh init [projectName] -tmp /Users/username/some-template
 
