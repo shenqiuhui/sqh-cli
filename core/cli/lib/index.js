@@ -6,6 +6,7 @@ const path = require('path');
 const os = require('os');
 const semver = require('semver');
 const chalk = require('chalk');
+const figlet = require('figlet');
 const pathExists = require('path-exists');
 const dedent = require('dedent');
 const commander = require('commander');
@@ -52,11 +53,22 @@ async function prepare() {
  */
 function registerCommand() {
   program
-  .name(Object.keys(pkg.bin)[0])
-  .usage('<command> [options]')
-  .option('-d, --debug', '是否开启调试模式', false)
-  .option('-tp, --targetPath <targetPath>', '指定本地命令调试文件路径')
-  .version(pkg.version);
+    .name(Object.keys(pkg.bin)[0])
+    .usage('<command> [options]')
+    .option('-d, --debug', '是否开启调试模式', false)
+    .option('-tp, --targetPath <targetPath>', '指定本地命令调试文件路径')
+    .version(pkg.version);
+
+  program
+    .on('--help', function () {
+      console.log();
+      console.log();
+      console.log(chalk.magentaBright(figlet.textSync('sqh!', {
+        font: 'Ghost'
+      })));
+      console.log();
+      console.log(`执行 ${chalk.cyanBright(`sqh <command> --help`)} 或 ${chalk.cyanBright(`sqh help <command>`)} 查看命令帮助文档`);
+    });
 
   // 注册 init 命令
   program
