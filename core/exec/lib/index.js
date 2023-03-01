@@ -8,7 +8,7 @@ const { errorLogProcess, spinnerStart, spawn } = require('@sqh-cli/utils');
 // 命令对应的默认依赖名称
 const SETTINGS = {
   'sqh-init': '@sqh-cli/init',
-  'sqh-list-template': '@sqh-cli/list-template'
+  'sqh-list': '@sqh-cli/list'
 };
 
 // 缓存目录名称

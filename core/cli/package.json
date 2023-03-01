@@ -1,7 +1,7 @@
 {
-  "name": "@sqh-cli/core",
+  "name": "@sqh-cli/cli",
   "version": "0.0.5",
-  "description": "sqh-cli core",
+  "description": "sqh-cli cli",
   "author": "shenqiuhui",
   "homepage": "",
   "license": "ISC",

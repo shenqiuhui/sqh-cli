@@ -38,7 +38,7 @@ importers:
       semver: 7.3.8
       validate-npm-package-name: 5.0.0
 
-  commands/list-template:
+  commands/list:
     specifiers:
       '@sqh-cli/command': file:../../models/command
       '@sqh-cli/get-template-info': file:../../kits/get-template-info
@@ -84,6 +84,12 @@ importers:
       root-check: 1.0.0
       semver: 7.3.8
 
+  core/create:
+    specifiers:
+      '@sqh-cli/cli': file:../cli
+    dependencies:
+      '@sqh-cli/cli': file:core/cli
+
   core/exec:
     specifiers:
       '@sqh-cli/log': file:../../kits/log
@@ -106,7 +112,7 @@ importers:
 
   kits/get-template-info:
     specifiers:
-      '@sqh-cli/request': file:../../kits/request
+      '@sqh-cli/request': file:../request
     dependencies:
       '@sqh-cli/request': file:kits/request
 
@@ -4884,6 +4890,32 @@ packages:
   /yocto-queue/0.1.0:
     resolution: {integrity: sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==}
     engines: {node: '>=10'}
+    dev: false
+
+  file:core/cli:
+    resolution: {directory: core/cli, type: directory}
+    name: '@sqh-cli/cli'
+    version: 0.0.5
+    hasBin: true
+    dependencies:
+      '@sqh-cli/exec': file:core/exec
+      '@sqh-cli/get-npm-info': file:kits/get-npm-info
+      '@sqh-cli/log': file:kits/log
+      '@sqh-cli/utils': file:kits/utils
+      chalk: 4.1.2
+      commander: 10.0.0
+      dedent: 0.7.0
+      dotenv: 16.0.3
+      figlet: 1.5.2
+      import-local: 3.1.0
+      npmlog: 7.0.1
+      path-exists: 4.0.0
+      root-check: 1.0.0
+      semver: 7.3.8
+    transitivePeerDependencies:
+      - bluebird
+      - debug
+      - supports-color
     dev: false
 
   file:core/exec:

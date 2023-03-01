@@ -1,6 +1,6 @@
 'use strict';
 
-module.exports = core;
+module.exports = cli;
 
 const path = require('path');
 const os = require('os');
@@ -27,7 +27,7 @@ const DEFAULT_CLI_ENV = '.sqh-env'; // 脚手架环境变量文件名称
  * 脚手架主函数
  *
  */
-async function core() {
+async function cli() {
   try {
     await prepare();
     registerCommand();
@@ -183,19 +183,12 @@ function registerInitCommand() {
  *
  */
 function registerListCommand() {
-  const list = program
-    .command('list <command> [options]')
-    .usage('<command> [options]')
-    .description('根据命令查看列表');
-
-  list
-    .command('template')
+  program
+    .command('list [options]')
     .description('查看模板列表')
     .option('-t, --type <templateType>', '查看模板列表 "al"|"project"|"component"', 'al')
     .option('-f, --filter <execType>', '过滤模板列表 "al"|"normal"|"custom"', 'al')
     .action(exec);
-
-  commandsHelpTips(list, ['sqh', 'list']);
 }
 
 /**
