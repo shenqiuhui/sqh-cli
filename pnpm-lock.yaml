@@ -4895,7 +4895,7 @@ packages:
   file:core/cli:
     resolution: {directory: core/cli, type: directory}
     name: '@sqh-cli/cli'
-    version: 0.0.5
+    version: 0.0.6
     hasBin: true
     dependencies:
       '@sqh-cli/exec': file:core/exec
@@ -4921,7 +4921,7 @@ packages:
   file:core/exec:
     resolution: {directory: core/exec, type: directory}
     name: '@sqh-cli/exec'
-    version: 0.0.4
+    version: 0.0.5
     dependencies:
       '@sqh-cli/log': file:kits/log
       '@sqh-cli/package': file:models/package
@@ -4947,7 +4947,7 @@ packages:
   file:kits/get-template-info:
     resolution: {directory: kits/get-template-info, type: directory}
     name: '@sqh-cli/get-template-info'
-    version: 0.0.1
+    version: 0.0.2
     dependencies:
       '@sqh-cli/request': file:kits/request
     transitivePeerDependencies:
