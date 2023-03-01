@@ -1,6 +1,6 @@
 {
   "name": "@sqh-cli/list",
-  "version": "0.0.3",
+  "version": "0.1.0",
   "description": "sqh-cli command list",
   "author": "shenqiuhui",
   "homepage": "https://github.com/shenqiuhui/sqh-cli#readme",
@@ -28,7 +28,7 @@
   },
   "dependencies": {
     "@sqh-cli/command": "^0.0.2",
-    "@sqh-cli/get-template-info": "^0.0.4",
+    "@sqh-cli/get-template-info": "^0.1.0",
     "@sqh-cli/log": "^0.0.2",
     "@sqh-cli/utils": "^0.0.2",
     "chalk": "^4.1.2"

@@ -1,6 +1,6 @@
 {
   "name": "@sqh-cli/cli",
-  "version": "0.0.10",
+  "version": "0.1.0",
   "description": "sqh-cli cli",
   "author": "shenqiuhui",
   "homepage": "",
@@ -20,8 +20,8 @@
     "access": "public"
   },
   "dependencies": {
-    "@sqh-cli/exec": "^0.0.8",
-    "@sqh-cli/get-npm-info": "^0.0.6",
+    "@sqh-cli/exec": "^0.1.0",
+    "@sqh-cli/get-npm-info": "^0.1.0",
     "@sqh-cli/log": "^0.0.2",
     "@sqh-cli/utils": "^0.0.2",
     "chalk": "^4.1.2",

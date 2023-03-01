@@ -10,11 +10,11 @@ importers:
 
   commands/init:
     specifiers:
-      '@sqh-cli/command': file:../../models/command
-      '@sqh-cli/get-template-info': file:../../kits/get-template-info
-      '@sqh-cli/log': file:../../kits/log
-      '@sqh-cli/package': file:../../models/package
-      '@sqh-cli/utils': file:../../kits/utils
+      '@sqh-cli/command': ^0.0.2
+      '@sqh-cli/get-template-info': ^0.1.0
+      '@sqh-cli/log': ^0.0.2
+      '@sqh-cli/package': ^0.1.0
+      '@sqh-cli/utils': ^0.0.2
       camelcase: ^6.3.0
       ejs: ^3.1.8
       fs-extra: ^11.1.0
@@ -24,11 +24,11 @@ importers:
       semver: ^7.3.8
       validate-npm-package-name: ^5.0.0
     dependencies:
-      '@sqh-cli/command': file:models/command
-      '@sqh-cli/get-template-info': file:kits/get-template-info
-      '@sqh-cli/log': file:kits/log
-      '@sqh-cli/package': file:models/package
-      '@sqh-cli/utils': file:kits/utils
+      '@sqh-cli/command': link:../../models/command
+      '@sqh-cli/get-template-info': link:../../kits/get-template-info
+      '@sqh-cli/log': link:../../kits/log
+      '@sqh-cli/package': link:../../models/package
+      '@sqh-cli/utils': link:../../kits/utils
       camelcase: 6.3.0
       ejs: 3.1.8
       fs-extra: 11.1.0
@@ -40,24 +40,24 @@ importers:
 
   commands/list:
     specifiers:
-      '@sqh-cli/command': file:../../models/command
-      '@sqh-cli/get-template-info': file:../../kits/get-template-info
-      '@sqh-cli/log': file:../../kits/log
-      '@sqh-cli/utils': file:../../kits/utils
+      '@sqh-cli/command': ^0.0.2
+      '@sqh-cli/get-template-info': ^0.1.0
+      '@sqh-cli/log': ^0.0.2
+      '@sqh-cli/utils': ^0.0.2
       chalk: ^4.1.2
     dependencies:
-      '@sqh-cli/command': file:models/command
-      '@sqh-cli/get-template-info': file:kits/get-template-info
-      '@sqh-cli/log': file:kits/log
-      '@sqh-cli/utils': file:kits/utils
+      '@sqh-cli/command': link:../../models/command
+      '@sqh-cli/get-template-info': link:../../kits/get-template-info
+      '@sqh-cli/log': link:../../kits/log
+      '@sqh-cli/utils': link:../../kits/utils
       chalk: 4.1.2
 
   core/cli:
     specifiers:
-      '@sqh-cli/exec': file:../exec
-      '@sqh-cli/get-npm-info': file:../../kits/get-npm-info
-      '@sqh-cli/log': file:../../kits/log
-      '@sqh-cli/utils': file:../../kits/utils
+      '@sqh-cli/exec': ^0.1.0
+      '@sqh-cli/get-npm-info': ^0.1.0
+      '@sqh-cli/log': ^0.0.2
+      '@sqh-cli/utils': ^0.0.2
       chalk: ^4.1.2
       commander: ^10.0.0
       dedent: ^0.7.0
@@ -67,10 +67,10 @@ importers:
       root-check: ^1.0.0
       semver: ^7.3.8
     dependencies:
-      '@sqh-cli/exec': file:core/exec
-      '@sqh-cli/get-npm-info': file:kits/get-npm-info
-      '@sqh-cli/log': file:kits/log
-      '@sqh-cli/utils': file:kits/utils
+      '@sqh-cli/exec': link:../exec
+      '@sqh-cli/get-npm-info': link:../../kits/get-npm-info
+      '@sqh-cli/log': link:../../kits/log
+      '@sqh-cli/utils': link:../../kits/utils
       chalk: 4.1.2
       commander: 10.0.0
       dedent: 0.7.0
@@ -82,39 +82,39 @@ importers:
 
   core/create:
     specifiers:
-      '@sqh-cli/cli': file:../cli
-      '@sqh-cli/log': file:../../kits/log
+      '@sqh-cli/cli': ^0.0.9
+      '@sqh-cli/log': ^0.0.2
       import-local: ^3.1.0
     dependencies:
-      '@sqh-cli/cli': file:core/cli
-      '@sqh-cli/log': file:kits/log
+      '@sqh-cli/cli': 0.0.9
+      '@sqh-cli/log': link:../../kits/log
       import-local: 3.1.0
 
   core/exec:
     specifiers:
-      '@sqh-cli/log': file:../../kits/log
-      '@sqh-cli/package': file:../../models/package
-      '@sqh-cli/utils': file:../../kits/utils
+      '@sqh-cli/log': ^0.0.2
+      '@sqh-cli/package': ^0.1.0
+      '@sqh-cli/utils': ^0.0.2
     dependencies:
-      '@sqh-cli/log': file:kits/log
-      '@sqh-cli/package': file:models/package
-      '@sqh-cli/utils': file:kits/utils
+      '@sqh-cli/log': link:../../kits/log
+      '@sqh-cli/package': link:../../models/package
+      '@sqh-cli/utils': link:../../kits/utils
 
   kits/get-npm-info:
     specifiers:
-      '@sqh-cli/request': file:../request
+      '@sqh-cli/request': ^0.0.2
       semver: ^7.3.8
       url-join: ^4.0.0
     dependencies:
-      '@sqh-cli/request': file:kits/request
+      '@sqh-cli/request': link:../request
       semver: 7.3.8
       url-join: 4.0.1
 
   kits/get-template-info:
     specifiers:
-      '@sqh-cli/request': file:../request
+      '@sqh-cli/request': ^0.0.2
     dependencies:
-      '@sqh-cli/request': file:kits/request
+      '@sqh-cli/request': link:../request
 
   kits/log:
     specifiers:
@@ -150,9 +150,9 @@ importers:
 
   models/package:
     specifiers:
-      '@sqh-cli/get-npm-info': file:../../kits/get-npm-info
-      '@sqh-cli/log': file:../../kits/log
-      '@sqh-cli/utils': file:../../kits/utils
+      '@sqh-cli/get-npm-info': ^0.1.0
+      '@sqh-cli/log': ^0.0.2
+      '@sqh-cli/utils': ^0.0.2
       fs-extra: ^11.1.0
       inquirer: 8.2.5
       npminstall: ^7.4.1
@@ -160,9 +160,9 @@ importers:
       pkg-dir: ^5.0.0
       semver: ^7.3.8
     dependencies:
-      '@sqh-cli/get-npm-info': file:kits/get-npm-info
-      '@sqh-cli/log': file:kits/log
-      '@sqh-cli/utils': file:kits/utils
+      '@sqh-cli/get-npm-info': link:../../kits/get-npm-info
+      '@sqh-cli/log': link:../../kits/log
+      '@sqh-cli/utils': link:../../kits/utils
       fs-extra: 11.1.0
       inquirer: 8.2.5
       npminstall: 7.5.0
@@ -816,6 +816,90 @@ packages:
       esquery: 1.4.2
       typescript: 4.9.5
     dev: true
+
+  /@sqh-cli/cli/0.0.9:
+    resolution: {integrity: sha512-vEEJ3t+H08Jz+tPz7Kwf8GHTywHdfQcqHR/sk5r9QiXBuRk4PRQF2xXcuDOJtUtm+Q5EIL41rMeZBELQyQhMSA==}
+    dependencies:
+      '@sqh-cli/exec': 0.0.8
+      '@sqh-cli/get-npm-info': 0.0.6
+      '@sqh-cli/log': 0.0.2
+      '@sqh-cli/utils': 0.0.2
+      chalk: 4.1.2
+      commander: 10.0.0
+      dedent: 0.7.0
+      dotenv: 16.0.3
+      figlet: 1.5.2
+      path-exists: 4.0.0
+      root-check: 1.0.0
+      semver: 7.3.8
+    transitivePeerDependencies:
+      - bluebird
+      - debug
+      - supports-color
+    dev: false
+
+  /@sqh-cli/exec/0.0.8:
+    resolution: {integrity: sha512-NPcTNLXKaEqN+rml74yaEu9dhuSHrcMXL8+rbVGK2FsAs8mt9sIN4h2inBYUUyx7lc36sxYmJMwgFhMF/FfOkw==}
+    dependencies:
+      '@sqh-cli/log': 0.0.2
+      '@sqh-cli/package': 0.0.7
+      '@sqh-cli/utils': 0.0.2
+    transitivePeerDependencies:
+      - bluebird
+      - debug
+      - supports-color
+    dev: false
+
+  /@sqh-cli/get-npm-info/0.0.6:
+    resolution: {integrity: sha512-iaL+ns6FstaePr25vF7k2M9eOgz2u4Er1RYjT0NVGHInVOnzm8NGZa3JzPf7BRFx1uVizd7fL20iUKLBZlXR2Q==}
+    dependencies:
+      '@sqh-cli/request': 0.0.2
+      semver: 7.3.8
+      url-join: 4.0.1
+    transitivePeerDependencies:
+      - debug
+    dev: false
+
+  /@sqh-cli/log/0.0.2:
+    resolution: {integrity: sha512-AA8ALgN1Ofjc2deDx4X8jook04qOpIo8uYvuPNUhH+vhYos15UksxtChhBoZeGVu8zHNehY2xIf4w+J04mzR+Q==}
+    dependencies:
+      npmlog: 7.0.1
+    dev: false
+
+  /@sqh-cli/package/0.0.7:
+    resolution: {integrity: sha512-HuCPtHVrdcRKlQmYUfrFXx/1ivfghUOA5lJFMfbPEGR/C8b/cyyivuIJlfeesiIZvpc7iH1dRtRZuHPzZOe/bQ==}
+    dependencies:
+      '@sqh-cli/get-npm-info': 0.0.6
+      '@sqh-cli/log': 0.0.2
+      '@sqh-cli/utils': 0.0.2
+      fs-extra: 11.1.0
+      inquirer: 8.2.5
+      npminstall: 7.5.0
+      path-exists: 4.0.0
+      pkg-dir: 5.0.0
+      semver: 7.3.8
+    transitivePeerDependencies:
+      - bluebird
+      - debug
+      - supports-color
+    dev: false
+
+  /@sqh-cli/request/0.0.2:
+    resolution: {integrity: sha512-6tp7G6hV05V3nXIVK3r/+vicO6r6zkstmXKP/AAhzx1u2pgZ/dN1HlZEA0bIni9MVl0AC8pWXSkQfaNm5ERfwg==}
+    dependencies:
+      axios: 1.3.4
+    transitivePeerDependencies:
+      - debug
+    dev: false
+
+  /@sqh-cli/utils/0.0.2:
+    resolution: {integrity: sha512-3fjsdmWn1h7SZdXDJVi7HRpWkIGCYE+JQo/EXOz95uzpTdryRL79W/5c4FSchJpEvFnHkXZ4VfWwM8DIT6rkCQ==}
+    dependencies:
+      '@sqh-cli/log': 0.0.2
+      chalk: 4.1.2
+      kind-of: 6.0.3
+      ora: 5.4.1
+    dev: false
 
   /@tootallnate/once/2.0.0:
     resolution: {integrity: sha512-XCuKFP5PS55gnMVu3dty8KPatLqUoy/ZYzDzAGCQ8JNFCkLXzmI7vNHCR+XpbZaMWQK/vQubr7PkYq8g470J/A==}
@@ -4892,83 +4976,12 @@ packages:
     engines: {node: '>=10'}
     dev: false
 
-  file:core/cli:
-    resolution: {directory: core/cli, type: directory}
-    name: '@sqh-cli/cli'
-    version: 0.0.9
-    dependencies:
-      '@sqh-cli/exec': file:core/exec
-      '@sqh-cli/get-npm-info': file:kits/get-npm-info
-      '@sqh-cli/log': file:kits/log
-      '@sqh-cli/utils': file:kits/utils
-      chalk: 4.1.2
-      commander: 10.0.0
-      dedent: 0.7.0
-      dotenv: 16.0.3
-      figlet: 1.5.2
-      import-local: 3.1.0
-      npmlog: 7.0.1
-      path-exists: 4.0.0
-      root-check: 1.0.0
-      semver: 7.3.8
-    transitivePeerDependencies:
-      - bluebird
-      - debug
-      - supports-color
-    dev: false
-
-  file:core/exec:
-    resolution: {directory: core/exec, type: directory}
-    name: '@sqh-cli/exec'
-    version: 0.0.8
-    dependencies:
-      '@sqh-cli/log': file:kits/log
-      '@sqh-cli/package': file:models/package
-      '@sqh-cli/utils': file:kits/utils
-    transitivePeerDependencies:
-      - bluebird
-      - debug
-      - supports-color
-    dev: false
-
-  file:kits/get-npm-info:
-    resolution: {directory: kits/get-npm-info, type: directory}
-    name: '@sqh-cli/get-npm-info'
-    version: 0.0.6
-    dependencies:
-      '@sqh-cli/request': file:kits/request
-      semver: 7.3.8
-      url-join: 4.0.1
-    transitivePeerDependencies:
-      - debug
-    dev: false
-
-  file:kits/get-template-info:
-    resolution: {directory: kits/get-template-info, type: directory}
-    name: '@sqh-cli/get-template-info'
-    version: 0.0.4
-    dependencies:
-      '@sqh-cli/request': file:kits/request
-    transitivePeerDependencies:
-      - debug
-    dev: false
-
   file:kits/log:
     resolution: {directory: kits/log, type: directory}
     name: '@sqh-cli/log'
     version: 0.0.2
     dependencies:
       npmlog: 7.0.1
-    dev: false
-
-  file:kits/request:
-    resolution: {directory: kits/request, type: directory}
-    name: '@sqh-cli/request'
-    version: 0.0.2
-    dependencies:
-      axios: 1.3.4
-    transitivePeerDependencies:
-      - debug
     dev: false
 
   file:kits/utils:
@@ -4980,33 +4993,4 @@ packages:
       chalk: 4.1.2
       kind-of: 6.0.3
       ora: 5.4.1
-    dev: false
-
-  file:models/command:
-    resolution: {directory: models/command, type: directory}
-    name: '@sqh-cli/command'
-    version: 0.0.2
-    dependencies:
-      '@sqh-cli/utils': file:kits/utils
-      semver: 7.3.8
-    dev: false
-
-  file:models/package:
-    resolution: {directory: models/package, type: directory}
-    name: '@sqh-cli/package'
-    version: 0.0.7
-    dependencies:
-      '@sqh-cli/get-npm-info': file:kits/get-npm-info
-      '@sqh-cli/log': file:kits/log
-      '@sqh-cli/utils': file:kits/utils
-      fs-extra: 11.1.0
-      inquirer: 8.2.5
-      npminstall: 7.5.0
-      path-exists: 4.0.0
-      pkg-dir: 5.0.0
-      semver: 7.3.8
-    transitivePeerDependencies:
-      - bluebird
-      - debug
-      - supports-color
     dev: false
