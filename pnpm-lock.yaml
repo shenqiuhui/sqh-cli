@@ -4895,7 +4895,7 @@ packages:
   file:core/cli:
     resolution: {directory: core/cli, type: directory}
     name: '@sqh-cli/cli'
-    version: 0.0.8
+    version: 0.0.9
     dependencies:
       '@sqh-cli/exec': file:core/exec
       '@sqh-cli/get-npm-info': file:kits/get-npm-info
@@ -4920,7 +4920,7 @@ packages:
   file:core/exec:
     resolution: {directory: core/exec, type: directory}
     name: '@sqh-cli/exec'
-    version: 0.0.7
+    version: 0.0.8
     dependencies:
       '@sqh-cli/log': file:kits/log
       '@sqh-cli/package': file:models/package
@@ -4934,7 +4934,7 @@ packages:
   file:kits/get-npm-info:
     resolution: {directory: kits/get-npm-info, type: directory}
     name: '@sqh-cli/get-npm-info'
-    version: 0.0.5
+    version: 0.0.6
     dependencies:
       '@sqh-cli/request': file:kits/request
       semver: 7.3.8
@@ -4946,7 +4946,7 @@ packages:
   file:kits/get-template-info:
     resolution: {directory: kits/get-template-info, type: directory}
     name: '@sqh-cli/get-template-info'
-    version: 0.0.3
+    version: 0.0.4
     dependencies:
       '@sqh-cli/request': file:kits/request
     transitivePeerDependencies:
@@ -4994,7 +4994,7 @@ packages:
   file:models/package:
     resolution: {directory: models/package, type: directory}
     name: '@sqh-cli/package'
-    version: 0.0.6
+    version: 0.0.7
     dependencies:
       '@sqh-cli/get-npm-info': file:kits/get-npm-info
       '@sqh-cli/log': file:kits/log
