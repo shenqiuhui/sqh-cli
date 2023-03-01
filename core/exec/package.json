@@ -1,6 +1,6 @@
 {
   "name": "@sqh-cli/exec",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "sqh-cli execute package",
   "author": "shenqiuhui",
   "homepage": "https://github.com/shenqiuhui/sqh-cli#readme",
@@ -27,8 +27,8 @@
     "url": "https://github.com/shenqiuhui/sqh-cli/issues"
   },
   "dependencies": {
-    "@sqh-cli/package": "file:../../models/package",
     "@sqh-cli/log": "file:../../kits/log",
+    "@sqh-cli/package": "file:../../models/package",
     "@sqh-cli/utils": "file:../../kits/utils"
   }
 }
