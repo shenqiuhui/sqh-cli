@@ -27,8 +27,9 @@
     "url": "https://github.com/shenqiuhui/sqh-cli/issues"
   },
   "dependencies": {
-    "@sqh-cli/request": "file:../request",
+    "@sqh-cli/request": "^0.0.2",
     "semver": "^7.3.8",
     "url-join": "^4.0.0"
-  }
+  },
+  "gitHead": "d94f0a22cc4e2aaa42dddcbbdc3cbee0cb4a9b79"
 }

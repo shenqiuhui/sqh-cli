@@ -27,11 +27,11 @@
     "url": "https://github.com/shenqiuhui/sqh-cli/issues"
   },
   "dependencies": {
-    "@sqh-cli/command": "file:../../models/command",
-    "@sqh-cli/get-template-info": "file:../../kits/get-template-info",
-    "@sqh-cli/log": "file:../../kits/log",
-    "@sqh-cli/package": "file:../../models/package",
-    "@sqh-cli/utils": "file:../../kits/utils",
+    "@sqh-cli/command": "^0.0.2",
+    "@sqh-cli/get-template-info": "^0.0.4",
+    "@sqh-cli/log": "^0.0.2",
+    "@sqh-cli/package": "^0.0.7",
+    "@sqh-cli/utils": "^0.0.2",
     "camelcase": "^6.3.0",
     "ejs": "^3.1.8",
     "fs-extra": "^11.1.0",
@@ -40,5 +40,6 @@
     "path-exists": "^4.0.0",
     "semver": "^7.3.8",
     "validate-npm-package-name": "^5.0.0"
-  }
+  },
+  "gitHead": "d94f0a22cc4e2aaa42dddcbbdc3cbee0cb4a9b79"
 }

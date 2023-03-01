@@ -1,6 +1,6 @@
 {
   "name": "@sqh-cli/cli",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "description": "sqh-cli cli",
   "author": "shenqiuhui",
   "homepage": "",
@@ -20,10 +20,10 @@
     "access": "public"
   },
   "dependencies": {
-    "@sqh-cli/exec": "file:../exec",
-    "@sqh-cli/get-npm-info": "file:../../kits/get-npm-info",
-    "@sqh-cli/log": "file:../../kits/log",
-    "@sqh-cli/utils": "file:../../kits/utils",
+    "@sqh-cli/exec": "^0.0.8",
+    "@sqh-cli/get-npm-info": "^0.0.6",
+    "@sqh-cli/log": "^0.0.2",
+    "@sqh-cli/utils": "^0.0.2",
     "chalk": "^4.1.2",
     "commander": "^10.0.0",
     "dedent": "^0.7.0",
@@ -32,5 +32,6 @@
     "path-exists": "^4.0.0",
     "root-check": "^1.0.0",
     "semver": "^7.3.8"
-  }
+  },
+  "gitHead": "d94f0a22cc4e2aaa42dddcbbdc3cbee0cb4a9b79"
 }

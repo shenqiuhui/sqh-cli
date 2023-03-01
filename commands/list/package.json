@@ -27,10 +27,11 @@
     "url": "https://github.com/shenqiuhui/sqh-cli/issues"
   },
   "dependencies": {
-    "@sqh-cli/command": "file:../../models/command",
-    "@sqh-cli/get-template-info": "file:../../kits/get-template-info",
-    "@sqh-cli/log": "file:../../kits/log",
-    "@sqh-cli/utils": "file:../../kits/utils",
+    "@sqh-cli/command": "^0.0.2",
+    "@sqh-cli/get-template-info": "^0.0.4",
+    "@sqh-cli/log": "^0.0.2",
+    "@sqh-cli/utils": "^0.0.2",
     "chalk": "^4.1.2"
-  }
+  },
+  "gitHead": "d94f0a22cc4e2aaa42dddcbbdc3cbee0cb4a9b79"
 }
