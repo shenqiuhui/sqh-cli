@@ -4,7 +4,7 @@
 
 # install
 
-> npm install -g @sqh-cli/core
+> npm install -g @sqh-cli/create
 
 # Usage
 
