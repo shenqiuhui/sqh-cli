@@ -8,7 +8,15 @@
 
 # Usage
 
-> sqh init
+全局安装：
+
+> sqh --help
+
+无需安装：
+
+> npm init @sqh-cli help
+
+> npx @sqh-cli/create --help
 
 # Global Options
 
