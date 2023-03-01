@@ -1,7 +1,5 @@
 'use strict';
 
-module.exports = cli;
-
 const path = require('path');
 const os = require('os');
 const semver = require('semver');
@@ -155,7 +153,7 @@ async function checkGlobalUpdate() {
  */
 function registerMainCommand() {
   program
-    .name(Object.keys(pkg.bin)[0])
+    .name('sqh')
     .usage('<command> [options]')
     .option('-d, --debug', '是否开启调试模式', false)
     .option('-tp, --targetPath <targetPath>', '指定本地命令调试文件路径')
@@ -241,3 +239,5 @@ function commandsHelpTips(program, commands) {
       console.log(`执行 ${chalk.cyanBright(`${commandStr} <command> --help`)} 或 ${chalk.cyanBright(`${commandStr} help <command>`)} 查看命令帮助文档`);
     });
 }
+
+module.exports = cli;

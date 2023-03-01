@@ -26,6 +26,12 @@ async function getNpmInfo(npmName, registry) {
   return data;
 }
 
+/**
+ * 获取 npm 依赖下载的默认源
+ *
+ * @param {boolean} [isOriginal=false]
+ * @returns string
+ */
 function getDefaultRegistry(isOriginal = false) {
   return isOriginal ? 'https://registry.npmjs.org' : 'https://registry.npm.taobao.org';
 }
