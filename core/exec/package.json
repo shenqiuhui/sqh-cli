@@ -27,8 +27,8 @@
     "url": "https://github.com/shenqiuhui/sqh-cli/issues"
   },
   "dependencies": {
-    "@sqh-cli/log": "file:../../kits/log",
     "@sqh-cli/package": "file:../../models/package",
+    "@sqh-cli/log": "file:../../kits/log",
     "@sqh-cli/utils": "file:../../kits/utils"
   }
 }
