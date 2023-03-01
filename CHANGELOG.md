@@ -2,6 +2,22 @@
 
 此项目所有的变更都在该文件中维护。
 
+## [v0.0.6](https://github.com/shenqiuhui/sqh-cli/tree/v0.0.6) (2023-03-02)
+
+- **publish:** @sqh-cli/init@0.1.0
+- **publish:** @sqh-cli/list@0.1.0
+- **publish:** @sqh-cli/cli@0.1.0
+- **publish:** @sqh-cli/create@0.1.0
+- **publish:** @sqh-cli/exec@0.1.0
+- **publish:** @sqh-cli/get-npm-info@0.1.0
+- **publish:** @sqh-cli/get-template-info@0.1.0
+- **publish:** @sqh-cli/package@0.1.0
+
+- **feat:** 统一脚手架依赖为 @sqh-cli/create
+- **feat:** 支持免安装执行
+- **feat:** 优化包名
+- **refactor:** list 命令
+
 ## [v0.0.5](https://github.com/shenqiuhui/sqh-cli/tree/v0.0.5) (2023-02-28)
 
 - **publish:** @sqh-cli/init@0.0.4
