@@ -67,17 +67,11 @@
 
 ## list
 
-通过子命令查看列表。
-
-### Commands
-
-#### template
-
 用于打印已有的模板列表。
 
-##### Options
+### Options
 
-###### -t, --type
+#### -t, --type
 
 用于指定模板类型（全部/项目/组件），默认为全部（值为 "al"），可选值 "al"|"project"|"component"
 
@@ -85,11 +79,11 @@
 - `project` 项目模板
 - `component` 组件模板
 
-> sqh list template --type=component
+> sqh list --type=component
 
-> sqh list template -t project
+> sqh list -t project
 
-###### -f, --filter
+#### -f, --filter
 
 用于过滤模板是（正常还是定制），默认显示正常模板（值为 "normal"），可选值 "al"|"normal"|"custom"
 
@@ -97,6 +91,6 @@
 - `normal` 正常模板
 - `custom` 定制模板
 
-> sqh list template --filter=custom
+> sqh list --filter=custom
 
-> sqh list template -f normal
+> sqh list -f normal
