@@ -12,11 +12,11 @@ const TYPE_COMPONENT = 'component'; // 模板类型（组件）
 const TYPE_OPTION_VALUES = ['al', 'project', 'component']; // --filter 选项的值
 const FILTER_OPTION_VALUES = ['al', 'normal', 'custom']; // --filter 选项的值
 
-class ListTemplateCommand extends Command {
+class ListCommand extends Command {
   /**
    * init 原型函数实现
    *
-   * @memberof ListTemplateCommand
+   * @memberof ListCommand
    */
   init () {
     this.type = this._opts.type; // 模板类型（项目/组件）
@@ -38,7 +38,7 @@ class ListTemplateCommand extends Command {
   /**
    * exec 原型函数实现
    *
-   * @memberof ListTemplateCommand
+   * @memberof ListCommand
    */
   async exec() {
     const spinner = spinnerStart('获取模板列表...');
@@ -58,7 +58,7 @@ class ListTemplateCommand extends Command {
   /**
    * 获取模板列表
    *
-   * @memberof ListTemplateCommand
+   * @memberof ListCommand
    */
   async getTemplates(callback) {
     if (callback && typeof callback !== 'function') {
@@ -94,7 +94,7 @@ class ListTemplateCommand extends Command {
    *
    * @param {string} type
    * @returns Array<object>
-   * @memberof ListTemplateCommand
+   * @memberof ListCommand
    */
   filterTemplates(type) {
     const templates = this.templates;
@@ -110,7 +110,7 @@ class ListTemplateCommand extends Command {
    * 打印模板列表
    *
    * @param {Array<object>} templates
-   * @memberof ListTemplateCommand
+   * @memberof ListCommand
    */
   consoleTemplateList(templates) {
     const len = templates.length;
@@ -126,15 +126,15 @@ class ListTemplateCommand extends Command {
 /**
  * list template 命令函数
  *
- * @returns new ListTemplateCommand
+ * @returns new ListCommand
  * @param {array} argv
  */
-function listTemplate(argv) {
+function list(argv) {
   try {
-    return new ListTemplateCommand(argv);
+    return new ListCommand(argv);
   } catch (err) {
     errorLogProcess('cli', err, process.env.CLI_DEBUG_MODE);
   }
 }
 
-module.exports = listTemplate;
+module.exports = list;

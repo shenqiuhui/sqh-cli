@@ -1,7 +1,7 @@
 {
-  "name": "@sqh-cli/list-template",
+  "name": "@sqh-cli/list",
   "version": "0.0.1",
-  "description": "sqh-cli command list template",
+  "description": "sqh-cli command list",
   "author": "shenqiuhui",
   "homepage": "https://github.com/shenqiuhui/sqh-cli#readme",
   "license": "ISC",
