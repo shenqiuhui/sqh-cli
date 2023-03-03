@@ -33,7 +33,11 @@ async function getNpmInfo(npmName, registry) {
  * @returns string
  */
 function getDefaultRegistry(isOriginal = false) {
-  return isOriginal ? 'https://registry.npmjs.org' : 'https://registry.npm.taobao.org';
+  if (isOriginal) {
+    return 'https://registry.npmjs.org';
+  }
+
+  return process.env.CLI_REGISTRY || 'https://registry.npmmirror.com';
 }
 
 /**

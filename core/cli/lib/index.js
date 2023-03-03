@@ -16,10 +16,11 @@ const pkg = require('../package.json');
 
 const userHome = os.homedir(); // 用户主目录
 const program = new commander.Command(); // 创建命令行实例
-const args = program.opts(); // 命令行参数
+const globalOpts = program.opts(); // 命令行参数
 
 const DEFAULT_CLI_HOME = '.sqh-cli'; // 脚手架目录名称
 const DEFAULT_CLI_ENV = '.sqh-env'; // 脚手架环境变量文件名称
+const DEFAULT_CLI_REGISTRY = 'https://registry.npmmirror.com'; // 默认 npm 源
 
 /**
  * 脚手架主函数
@@ -30,7 +31,7 @@ async function cli() {
     await prepare();
     registerCommand();
   } catch (err) {
-    errorLogProcess('cli', err, args.debug);
+    errorLogProcess('cli', err, globalOpts.debug);
   }
 }
 
@@ -54,6 +55,7 @@ function registerCommand() {
   registerInitCommand();
   registerListCommand();
   watchOptionsAndCommands();
+  argsParse();
 }
 
 /**
@@ -79,7 +81,7 @@ function checkUserHome() {
  *
  */
 function setDebugEnv() {
-  if (args.debug) {
+  if (globalOpts.debug) {
     process.env.CLI_LOG_LEVEL = 'verbose';
     process.env.CLI_DEBUG_MODE = true;
   } else {
@@ -98,12 +100,13 @@ function checkEnv() {
   const dotenv = require('dotenv');
   const dotEnvPath = path.resolve(userHome, DEFAULT_CLI_ENV);
 
+  createDefaultConfig();
+
   if (pathExists.sync(dotEnvPath)) {
     dotenv.config({
-      path: dotEnvPath
+      path: dotEnvPath,
+      override: true
     });
-  } else {
-    createDefaultConfig();
   }
 }
 
@@ -114,16 +117,13 @@ function checkEnv() {
  */
 function createDefaultConfig() {
   const cliConfig = {
-    home: userHome
+    home: userHome,
+    cliHomePath: path.join(userHome, DEFAULT_CLI_HOME),
+    cliRegistry: DEFAULT_CLI_REGISTRY
   };
 
-  if (process.env.CLI_HOME) {
-    cliConfig['cliHome'] = path.join(userHome, process.env.CLI_HOME);
-  } else {
-    cliConfig['cliHome'] = path.join(userHome, DEFAULT_CLI_HOME);
-  }
-
-  process.env.CLI_HOME_PATH = cliConfig.cliHome;
+  process.env.CLI_HOME_PATH = cliConfig.cliHomePath;
+  process.env.CLI_REGISTRY = cliConfig.cliRegistry;
 
   return cliConfig;
 }
@@ -155,6 +155,7 @@ function registerMainCommand() {
   program
     .name('sqh')
     .usage('<command> [options]')
+    .option('-r, --registry <registryUrl>', '脚手架默认源（用于检查更新、命令组装、模板下载）')
     .option('-d, --debug', '是否开启调试模式', false)
     .option('-tp, --targetPath <targetPath>', '指定本地命令调试文件路径')
     .version(pkg.version);
@@ -202,14 +203,25 @@ function watchOptionsAndCommands() {
 
   // 监听 targetPath 选项
   program.on('option:targetPath', function () {
-    process.env.CLI_TARGET_PATH = args.targetPath;
+    process.env.CLI_TARGET_PATH = globalOpts.targetPath;
+  });
+
+  // 监听 registry 选项
+  program.on('option:registry', function () {
+    process.env.CLI_REGISTRY = globalOpts.registry;
   });
 
   // 监听未知命令
   program.on('command:*', function (unknownCmd) {
     log.error('cli', chalk.redBright(`未知的命令：${unknownCmd[0]}`));
   });
+}
 
+/**
+ * 命令行参数解析
+ *
+ */
+function argsParse() {
   program.parse(process.argv);
 
   // 未输入命令打印帮助文档
