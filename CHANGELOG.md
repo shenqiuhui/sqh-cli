@@ -2,6 +2,18 @@
 
 此项目所有的变更都在该文件中维护。
 
+## [v0.0.9](https://github.com/shenqiuhui/sqh-cli/tree/v0.0.9) (2023-03-04)
+
+- **publish:** @sqh-cli/init@0.2.0
+- **publish:** @sqh-cli/list@0.1.2
+- **publish:** @sqh-cli/cli@0.1.5
+- **publish:** @sqh-cli/create@0.1.6
+- **publish:** @sqh-cli/exec@0.1.2
+- **publish:** @sqh-cli/utils@0.2.0
+- **publish:** @sqh-cli/command@0.1.1
+- **publish:** @sqh-cli/package@0.1.2
+
+- **feat:** 优化初始化本地文件检测流程
 
 ## [v0.0.8](https://github.com/shenqiuhui/sqh-cli/tree/v0.0.8) (2023-03-04)
 
