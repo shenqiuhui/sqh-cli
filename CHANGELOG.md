@@ -2,6 +2,23 @@
 
 此项目所有的变更都在该文件中维护。
 
+## [v0.0.7](https://github.com/shenqiuhui/sqh-cli/tree/v0.0.7) (2023-03-04)
+
+- **publish:** @sqh-cli/init@0.1.1
+- **publish:** @sqh-cli/list@0.1.1
+- **publish:** @sqh-cli/cli@0.1.1
+- **publish:** @sqh-cli/create@0.1.1
+- **publish:** @sqh-cli/exec@0.1.1
+- **publish:** @sqh-cli/get-npm-info@0.1.1
+- **publish:** @sqh-cli/get-template-info@0.1.1
+- **publish:** @sqh-cli/utils@0.1.0
+- **publish:** @sqh-cli/command@0.1.0
+- **publish:** @sqh-cli/package@0.1.1
+
+- **feat:** 优化逻辑, 增加工具方法
+- **fix:** 更正 lock 文件
+- **feat:** 默认 `npm` 源支持 `.sqh-env` 文件和全局 `--registry` 参数设置
+
 ## [v0.0.6](https://github.com/shenqiuhui/sqh-cli/tree/v0.0.6) (2023-03-02)
 
 - **publish:** @sqh-cli/init@0.1.0
