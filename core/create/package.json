@@ -2,7 +2,7 @@
   "name": "@sqh-cli/create",
   "version": "0.1.0",
   "description": "sqh cli create",
-  "author": "shenqiuhui <pandashen821@163.com>",
+  "author": "shenqiuhui",
   "homepage": "https://github.com/shenqiuhui/sqh-cli#readme",
   "license": "ISC",
   "bin": {
@@ -29,8 +29,8 @@
     "url": "https://github.com/shenqiuhui/sqh-cli/issues"
   },
   "dependencies": {
-    "@sqh-cli/cli": "^0.0.9",
-    "@sqh-cli/log": "^0.0.2",
+    "@sqh-cli/cli": "file:../cli",
+    "@sqh-cli/log": "file:../../kits/log",
     "import-local": "^3.1.0"
   },
   "gitHead": "d94f0a22cc4e2aaa42dddcbbdc3cbee0cb4a9b79"
