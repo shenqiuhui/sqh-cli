@@ -8,7 +8,7 @@
 
 # Usage
 
-全局安装：
+全局安装后：
 
 > sqh --help
 
@@ -20,19 +20,27 @@
 
 # Global Options
 
+## -r, --registry
+
+设置更新检查、命令组装、模板下载的源，默认 https://registry.npmmirror.com。
+
+> sqh [command] --registry=https://registry.npmjs.org
+
+> sqh [command] -r https://registry.npmjs.org
+
 ## -d, --debug
 
 开启调试模式。
 
 > sqh [command] --debug
 
-## -tp, --targetPath
+## -cp, --commandPath
 
 调试和自定义开发命令的场景，用于指定命令执行时的本地文件路径。
 
-> sqh [command] --targetPath=/Users/username/commands/init
+> sqh [command] --commandPath=/Users/username/commands/init
 
-> sqh [command] -tp /Users/username/commands/init
+> sqh [command] -cp /Users/username/commands/init
 
 
 # Commands
@@ -65,13 +73,13 @@
 
 > sqh init [projectName] --filter custom
 
-#### -tmp, --templatePath
+#### -tp, --templatePath
 
 本地开发（项目/组件）模板的场景，用于指定命令执行时的本地文件路径。
 
 > sqh init [projectName] --templatePath=/Users/username/some-template
 
-> sqh init [projectName] -tmp /Users/username/some-template
+> sqh init [projectName] -tp /Users/username/some-template
 
 ## list
 
@@ -102,3 +110,17 @@
 > sqh list --filter=custom
 
 > sqh list -f normal
+
+# .sqh-env 环境变量文件
+
+可以在用户目录下手动创建环境变量文件，用于设置脚手架内部使用的环境变量。
+
+优先级：`Options` 参数 > `.sqh-env` 文件 > 脚手架默认值
+
+可更改环境变量列表：
+
+- `CLI_DEBUG_MODE` 布尔值，设置是否为调试模式，作用等于 `--debug`；
+- `CLI_HOME_PATH` 默认值 `/Users/username/.sqh-cli`，用于设置脚手架的文件存储目录，包含已安装的命令和组件的缓存等；
+- `CLI_COMMAND_PATH` 调试时指定命令的模块路径或模块的可执行文件路径；
+- `CLI_TEMPLATE_PATH` 调试时指定操作的本地模板路径；
+- `CLI_REGISTRY` 安装命令和模板等所使用的源，默认值 https://registry.npmmirror.com。
