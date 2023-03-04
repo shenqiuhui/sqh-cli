@@ -2,4 +2,4 @@
 
 'use strict';
 
-require('@sqh-cli/cli/bin/index.js');
+require('@sqh-cli/cli/bin');
