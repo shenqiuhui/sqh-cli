@@ -5,8 +5,8 @@
 
 ## [v0.0.8](https://github.com/shenqiuhui/sqh-cli/tree/v0.0.8) (2023-03-04)
 
-- **publish:** @sqh-cli/cli@0.1.2
-- **publish:** @sqh-cli/create@0.1.2
+- **publish:** @sqh-cli/cli@0.1.4
+- **publish:** @sqh-cli/create@0.1.5
 
 - **fix:** 处理 @sqh-cli/cli 和 @sqh-cli/create 的关系
 
