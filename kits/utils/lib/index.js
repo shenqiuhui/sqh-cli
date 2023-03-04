@@ -108,12 +108,14 @@ function removeFilesTrash(path) {
       reject(new Error('指定的路径不存在！'));
     }
 
-    glob('*', {
-      cwd: path
+    glob('**', {
+      cwd: path,
+      dot: true
     }, (err, files) => {
       if (err) {
         reject(err);
       } else {
+        process.chdir(path);
         trash(files).then(() => resolve());
       }
     });

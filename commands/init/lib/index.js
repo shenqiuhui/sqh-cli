@@ -89,6 +89,10 @@ class InitCommand extends Command {
    */
   async prepare() {
     if (!this.isDirEmpty(this.localPath)) {
+      const switched = this.switchLocalPath();
+
+      const localPathExists = switched && pathExists.sync(this.localPath);
+
       const answers = await inquirer.prompt([
         {
           type: 'confirm',
@@ -106,25 +110,42 @@ class InitCommand extends Command {
           default: false,
           message: '是否清空当前目录下的文件？',
           when: (answers) => {
-            return answers.force;
+            answers.delete = false;
+            return answers.force && !this.initName;
+          }
+        },
+        {
+          type: 'confirm',
+          name: 'overwrite',
+          default: false,
+          message: '发现与项目名称同名的文件夹，是否覆盖？',
+          when: (answers) => {
+            answers.overwrite = false;
+            return this.initName && localPathExists;
           }
         }
       ]);
 
       log.verbose('debug: answers', answers);
 
-      if (!answers.force || !answers.delete) {
+      if (!answers.force || (localPathExists && !answers.overwrite)) {
         return;
       }
 
-      const spinner = spinnerStart('正在清空当前目录...');
+      if (answers.delete) {
+        const spinner = spinnerStart('正在清空当前目录...');
 
-      try {
+        try {
+          await removeFilesTrash(this.localPath);
+        } catch (err) {
+          throw err;
+        } finally {
+          spinner.stop();
+        }
+      }
+
+      if (localPathExists && answers.overwrite) {
         await removeFilesTrash(this.localPath);
-      } catch (err) {
-        throw err;
-      } finally {
-        spinner.stop();
       }
     }
 
@@ -437,20 +458,38 @@ class InitCommand extends Command {
    * @memberof InitCommand
    */
   async copyTemplate() {
-    const templatePathDir = this.templatePath || this.templateInterface.getCacheFilePath();
-    const templatePath = path.resolve(templatePathDir, 'template');
+    const templateDir = this.templatePath || this.templateInterface.getCacheFilePath();
+    const templateSource = path.resolve(templateDir, 'template');
+
+    log.verbose('debug: templateSource', templateSource);
+    log.verbose('debug: templateTarget', this.localPath);
+
     const spinner = spinnerStart('正在安装模板...');
 
     try {
-      fse.ensureDirSync(templatePath);
+      fse.ensureDirSync(templateSource);
       fse.ensureDirSync(this.localPath);
-      fse.copySync(templatePath, this.localPath);
+      fse.copySync(templateSource, this.localPath);
       Promise.resolve().then(() => log.success('模板安装完成'));
     } catch (err) {
       throw err;
     } finally {
       spinner.stop();
     }
+  }
+
+  /**
+   * 切换执行目录
+   *
+   * @memberof InitCommand
+   */
+  switchLocalPath() {
+    if (this.initName) {
+      this.localPath = path.resolve(this.localPath, this.initName);
+      return true;
+    }
+
+    return false;
   }
 
   /**
@@ -488,7 +527,8 @@ class InitCommand extends Command {
       glob('**', {
         cwd: this.localPath,
         ignore,
-        nodir: true
+        nodir: true,
+        dot: true
       }, (err, files) => {
         if (err) {
           reject(err);
@@ -568,7 +608,8 @@ class InitCommand extends Command {
 
       const exitCode = await spawnAsync(program, cmdArgs, {
         cwd: this.localPath,
-        stdio: 'inherit'
+        stdio: 'inherit',
+        shell: true
       });
 
       if (exitCode !== 0) {

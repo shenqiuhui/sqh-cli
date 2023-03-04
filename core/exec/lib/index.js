@@ -87,7 +87,10 @@ async function exec() {
       });
 
       child.on('exit', function (exitCode) {
-        log.verbose('cli', `${commandChain.replace(/-/g, ' ')} 命令执行成功`);
+        if (exitCode === 0) {
+          log.verbose('cli', `${commandChain.replace(/-/g, ' ')} 命令执行成功`);
+        }
+
         process.exit(exitCode);
       });
     }
