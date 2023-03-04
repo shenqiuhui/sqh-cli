@@ -81,15 +81,8 @@ function checkUserHome() {
  *
  */
 function setDebugEnv() {
-  if (globalOpts.debug) {
-    process.env.CLI_LOG_LEVEL = 'verbose';
-    process.env.CLI_DEBUG_MODE = true;
-  } else {
-    process.env.CLI_LOG_LEVEL = 'info';
-    process.env.CLI_DEBUG_MODE = false;
-  }
-
-  log.level = process.env.CLI_LOG_LEVEL;
+  process.env.CLI_DEBUG_MODE = globalOpts.debug;
+  setLogLevel(globalOpts.debug);
 }
 
 /**
@@ -108,6 +101,8 @@ function checkEnv() {
       override: true
     });
   }
+
+  setLogLevel(process.env.CLI_DEBUG_MODE);
 }
 
 /**
@@ -119,14 +114,17 @@ function createDefaultConfig() {
   const cliConfig = {
     home: userHome,
     cliHomePath: path.join(userHome, DEFAULT_CLI_HOME),
-    cliRegistry: DEFAULT_CLI_REGISTRY
+    cliRegistry: DEFAULT_CLI_REGISTRY,
+    cliDebugMode: false
   };
 
   process.env.CLI_HOME_PATH = cliConfig.cliHomePath;
   process.env.CLI_REGISTRY = cliConfig.cliRegistry;
+  process.env.CLI_DEBUG_MODE = cliConfig.cliDebugMode;
 
   return cliConfig;
 }
+
 
 /**
  * 检查脚手架版本并提示更新
@@ -148,6 +146,15 @@ async function checkGlobalUpdate() {
 }
 
 /**
+ * 设置日志等级
+ *
+ * @param {boolean} [debug=false]
+ */
+function setLogLevel(debug = false) {
+  process.env.CLI_LOG_LEVEL = log.level = debug ? 'verbose' : 'info';
+}
+
+/**
  * 注册全局主命令
  *
  */
@@ -157,7 +164,7 @@ function registerMainCommand() {
     .usage('<command> [options]')
     .option('-r, --registry <registryUrl>', '脚手架默认源（用于检查更新、命令组装、模板下载）')
     .option('-d, --debug', '是否开启调试模式', false)
-    .option('-tp, --targetPath <targetPath>', '指定本地命令调试文件路径')
+    .option('-cp, --commandPath <targetPath>', '指定本地命令调试文件路径')
     .version(pkg.version);
 
   commandsHelpTips(program, ['sqh']);
@@ -173,7 +180,7 @@ function registerInitCommand() {
     .description('初始化项目')
     .option('-f, --force', '是否强制初始化项目', false)
     .option('--filter <execType>', '过滤模板列表 "al"|"normal"|"custom"', 'normal')
-    .option('-tmp, --templatePath <templatePath>', '指定本地模板调试路径')
+    .option('-tp, --templatePath <targetPath>', '指定本地模板调试路径')
     .action(exec);
 }
 
@@ -201,9 +208,9 @@ function watchOptionsAndCommands() {
     log.verbose('cli', chalk.cyanBright('开启调试模式'));
   });
 
-  // 监听 targetPath 选项
-  program.on('option:targetPath', function () {
-    process.env.CLI_TARGET_PATH = globalOpts.targetPath;
+  // 监听 commandPath 选项
+  program.on('option:commandPath', function () {
+    process.env.CLI_COMMAND_PATH = globalOpts.commandPath;
   });
 
   // 监听 registry 选项

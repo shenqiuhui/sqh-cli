@@ -12,7 +12,7 @@ const glob = require('glob');
 const Command = require('@sqh-cli/command');
 const Package = require('@sqh-cli/package');
 const log = require('@sqh-cli/log');
-const { errorLogProcess, spinnerStart, spawnAsync } = require('@sqh-cli/utils');
+const { errorLogProcess, spinnerStart, removeFilesTrash, spawnAsync } = require('@sqh-cli/utils');
 const { getProjectTemplates, getComponentTemplates } = require('@sqh-cli/get-template-info');
 
 const CACHE_DIR = 'templates'; // 缓存目录名称
@@ -40,7 +40,7 @@ class InitCommand extends Command {
     this.initName = this._argv[0] || ''; // 初始化设置的项目名称
     this.force = !!this._opts.force; // 是否强制初始化
     this.filter = this._opts.filter; // 过滤模板
-    this.templatePath = this._opts.templatePath; // 本地模板路径
+    this.templatePath = this._opts.templatePath || process.env.CLI_TEMPLATE_PATH; // 本地模板路径
     this.templates = []; // 模板列表
     this.selectedTemplate = {}; // 选中的模板
     this.info = {}; // 初始化信息
@@ -120,7 +120,7 @@ class InitCommand extends Command {
       const spinner = spinnerStart('正在清空当前目录...');
 
       try {
-        fse.emptyDirSync(this.localPath);
+        await removeFilesTrash(this.localPath);
       } catch (err) {
         throw err;
       } finally {
@@ -331,6 +331,9 @@ class InitCommand extends Command {
       const targetPath = path.resolve(homePath, CACHE_DIR);
       const storeDir = path.resolve(targetPath, 'node_modules');
 
+      log.verbose('debug: targetPath', targetPath);
+      log.verbose('debug: storeDir', storeDir);
+
       const pkg = new Package({
         targetPath,
         storeDir,
@@ -358,11 +361,11 @@ class InitCommand extends Command {
         }
       }
     } else {
+      log.verbose('debug: templatePath', this.templatePath);
+
       this.templateInterface = new Package({
         targetPath: this.templatePath
       });
-
-      log.verbose('debug: templatePath', this.templatePath);
     }
   }
 
@@ -539,8 +542,6 @@ class InitCommand extends Command {
       if (depsInstalled && startCmd) {
         await this.execCommand(manager, startCmd, '项目启动失败！');
       }
-    } else {
-      log.success('初始化完成');
     }
   }
 

@@ -4,6 +4,9 @@ const cp = require('child_process');
 const kindOf = require('kind-of');
 const chalk = require('chalk');
 const ora = require('ora');
+const pathExists = require('path-exists');
+const glob = require('glob');
+const trash = require('trash');
 const log = require('@sqh-cli/log');
 
 /**
@@ -89,11 +92,40 @@ function spawnAsync(command, args, options = {}) {
   });
 }
 
+/**
+ * 将指定路径内的文件移动到废纸篓
+ *
+ * @param {string} path
+ * @returns Promise
+ */
+function removeFilesTrash(path) {
+  return new Promise((resolve, reject) => {
+    if (typeof path !== 'string') {
+      reject(new Error('文件夹路径应为 string 类型！'));
+    }
+
+    if (!pathExists.sync(path)) {
+      reject(new Error('指定的路径不存在！'));
+    }
+
+    glob('*', {
+      cwd: path
+    }, (err, files) => {
+      if (err) {
+        reject(err);
+      } else {
+        trash(files).then(() => resolve());
+      }
+    });
+  });
+}
+
 module.exports = {
   isObject,
   errorLogProcess,
   spinnerStart,
   sleep,
   spawn,
-  spawnAsync
+  spawnAsync,
+  removeFilesTrash
 };

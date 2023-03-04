@@ -19,7 +19,7 @@ const CACHE_DIR = 'dependencies';
  *
  */
 async function exec() {
-  let targetPath = process.env.CLI_TARGET_PATH;
+  const commandPath = process.env.CLI_COMMAND_PATH;
   const homePath = process.env.CLI_HOME_PATH;
   const debug = process.env.CLI_DEBUG_MODE;
   const cmdInstance = arguments[arguments.length - 1];
@@ -32,8 +32,8 @@ async function exec() {
   let pkg;
 
   try {
-    if (!targetPath) {
-      targetPath = path.resolve(homePath, CACHE_DIR);
+    if (!commandPath) {
+      const targetPath = path.resolve(homePath, CACHE_DIR);
       const storeDir = path.resolve(targetPath, 'node_modules');
 
       log.verbose('debug: targetPath', targetPath);
@@ -61,10 +61,10 @@ async function exec() {
         }
       }
     } else {
-      log.verbose('debug: targetPath', targetPath);
+      log.verbose('debug: commandPath', commandPath);
 
       pkg = new Package({
-        targetPath,
+        targetPath: commandPath
       });
     }
 
