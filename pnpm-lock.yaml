@@ -5060,7 +5060,7 @@ packages:
   file:core/cli:
     resolution: {directory: core/cli, type: directory}
     name: '@sqh-cli/cli'
-    version: 0.1.0
+    version: 0.1.1
     dependencies:
       '@sqh-cli/exec': file:core/exec
       '@sqh-cli/get-npm-info': file:kits/get-npm-info
@@ -5083,7 +5083,7 @@ packages:
   file:core/exec:
     resolution: {directory: core/exec, type: directory}
     name: '@sqh-cli/exec'
-    version: 0.1.0
+    version: 0.1.1
     dependencies:
       '@sqh-cli/log': file:kits/log
       '@sqh-cli/package': file:models/package
@@ -5097,7 +5097,7 @@ packages:
   file:kits/get-npm-info:
     resolution: {directory: kits/get-npm-info, type: directory}
     name: '@sqh-cli/get-npm-info'
-    version: 0.1.0
+    version: 0.1.1
     dependencies:
       '@sqh-cli/request': file:kits/request
       semver: 7.3.8
@@ -5109,7 +5109,7 @@ packages:
   file:kits/get-template-info:
     resolution: {directory: kits/get-template-info, type: directory}
     name: '@sqh-cli/get-template-info'
-    version: 0.1.0
+    version: 0.1.1
     dependencies:
       '@sqh-cli/request': file:kits/request
     transitivePeerDependencies:
@@ -5137,19 +5137,21 @@ packages:
   file:kits/utils:
     resolution: {directory: kits/utils, type: directory}
     name: '@sqh-cli/utils'
-    version: 0.0.2
+    version: 0.1.0
     dependencies:
       '@sqh-cli/log': file:kits/log
       chalk: 4.1.2
+      glob: 8.1.0
       kind-of: 6.0.3
       ora: 5.4.1
+      path-exists: 4.0.0
       trash: 7.2.0
     dev: false
 
   file:models/command:
     resolution: {directory: models/command, type: directory}
     name: '@sqh-cli/command'
-    version: 0.0.2
+    version: 0.1.0
     dependencies:
       '@sqh-cli/utils': file:kits/utils
       semver: 7.3.8
@@ -5158,7 +5160,7 @@ packages:
   file:models/package:
     resolution: {directory: models/package, type: directory}
     name: '@sqh-cli/package'
-    version: 0.1.0
+    version: 0.1.1
     dependencies:
       '@sqh-cli/get-npm-info': file:kits/get-npm-info
       '@sqh-cli/log': file:kits/log
