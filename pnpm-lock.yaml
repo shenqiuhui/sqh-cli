@@ -5065,7 +5065,8 @@ packages:
   file:core/cli:
     resolution: {directory: core/cli, type: directory}
     name: '@sqh-cli/cli'
-    version: 0.1.2
+    version: 0.1.3
+    hasBin: true
     dependencies:
       '@sqh-cli/exec': file:core/exec
       '@sqh-cli/get-npm-info': file:kits/get-npm-info
