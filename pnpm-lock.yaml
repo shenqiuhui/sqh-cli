@@ -10,11 +10,11 @@ importers:
 
   commands/init:
     specifiers:
-      '@sqh-cli/command': ^0.0.2
-      '@sqh-cli/get-template-info': ^0.1.0
-      '@sqh-cli/log': ^0.0.2
-      '@sqh-cli/package': ^0.1.0
-      '@sqh-cli/utils': ^0.0.2
+      '@sqh-cli/command': file:../../models/command
+      '@sqh-cli/get-template-info': file:../../kits/get-template-info
+      '@sqh-cli/log': file:../../kits/log
+      '@sqh-cli/package': file:../../models/package
+      '@sqh-cli/utils': file:../../kits/utils
       camelcase: ^6.3.0
       ejs: ^3.1.8
       fs-extra: ^11.1.0
@@ -24,11 +24,11 @@ importers:
       semver: ^7.3.8
       validate-npm-package-name: ^5.0.0
     dependencies:
-      '@sqh-cli/command': link:../../models/command
-      '@sqh-cli/get-template-info': link:../../kits/get-template-info
-      '@sqh-cli/log': link:../../kits/log
-      '@sqh-cli/package': link:../../models/package
-      '@sqh-cli/utils': link:../../kits/utils
+      '@sqh-cli/command': file:models/command
+      '@sqh-cli/get-template-info': file:kits/get-template-info
+      '@sqh-cli/log': file:kits/log
+      '@sqh-cli/package': file:models/package
+      '@sqh-cli/utils': file:kits/utils
       camelcase: 6.3.0
       ejs: 3.1.8
       fs-extra: 11.1.0
@@ -40,24 +40,24 @@ importers:
 
   commands/list:
     specifiers:
-      '@sqh-cli/command': ^0.0.2
-      '@sqh-cli/get-template-info': ^0.1.0
-      '@sqh-cli/log': ^0.0.2
-      '@sqh-cli/utils': ^0.0.2
+      '@sqh-cli/command': file:../../models/command
+      '@sqh-cli/get-template-info': file:../../kits/get-template-info
+      '@sqh-cli/log': file:../../kits/log
+      '@sqh-cli/utils': file:../../kits/utils
       chalk: ^4.1.2
     dependencies:
-      '@sqh-cli/command': link:../../models/command
-      '@sqh-cli/get-template-info': link:../../kits/get-template-info
-      '@sqh-cli/log': link:../../kits/log
-      '@sqh-cli/utils': link:../../kits/utils
+      '@sqh-cli/command': file:models/command
+      '@sqh-cli/get-template-info': file:kits/get-template-info
+      '@sqh-cli/log': file:kits/log
+      '@sqh-cli/utils': file:kits/utils
       chalk: 4.1.2
 
   core/cli:
     specifiers:
-      '@sqh-cli/exec': ^0.1.0
-      '@sqh-cli/get-npm-info': ^0.1.0
-      '@sqh-cli/log': ^0.0.2
-      '@sqh-cli/utils': ^0.0.2
+      '@sqh-cli/exec': file:../exec
+      '@sqh-cli/get-npm-info': file:../../kits/get-npm-info
+      '@sqh-cli/log': file:../../kits/log
+      '@sqh-cli/utils': file:../../kits/utils
       chalk: ^4.1.2
       commander: ^10.0.0
       dedent: ^0.7.0
@@ -67,10 +67,10 @@ importers:
       root-check: ^1.0.0
       semver: ^7.3.8
     dependencies:
-      '@sqh-cli/exec': link:../exec
-      '@sqh-cli/get-npm-info': link:../../kits/get-npm-info
-      '@sqh-cli/log': link:../../kits/log
-      '@sqh-cli/utils': link:../../kits/utils
+      '@sqh-cli/exec': file:core/exec
+      '@sqh-cli/get-npm-info': file:kits/get-npm-info
+      '@sqh-cli/log': file:kits/log
+      '@sqh-cli/utils': file:kits/utils
       chalk: 4.1.2
       commander: 10.0.0
       dedent: 0.7.0
@@ -82,39 +82,39 @@ importers:
 
   core/create:
     specifiers:
-      '@sqh-cli/cli': ^0.0.9
-      '@sqh-cli/log': ^0.0.2
+      '@sqh-cli/cli': file:../cli
+      '@sqh-cli/log': file:../../kits/log
       import-local: ^3.1.0
     dependencies:
-      '@sqh-cli/cli': 0.0.9
-      '@sqh-cli/log': link:../../kits/log
+      '@sqh-cli/cli': file:core/cli
+      '@sqh-cli/log': file:kits/log
       import-local: 3.1.0
 
   core/exec:
     specifiers:
-      '@sqh-cli/log': ^0.0.2
-      '@sqh-cli/package': ^0.1.0
-      '@sqh-cli/utils': ^0.0.2
+      '@sqh-cli/log': file:../../kits/log
+      '@sqh-cli/package': file:../../models/package
+      '@sqh-cli/utils': file:../../kits/utils
     dependencies:
-      '@sqh-cli/log': link:../../kits/log
-      '@sqh-cli/package': link:../../models/package
-      '@sqh-cli/utils': link:../../kits/utils
+      '@sqh-cli/log': file:kits/log
+      '@sqh-cli/package': file:models/package
+      '@sqh-cli/utils': file:kits/utils
 
   kits/get-npm-info:
     specifiers:
-      '@sqh-cli/request': ^0.0.2
+      '@sqh-cli/request': file:../request
       semver: ^7.3.8
       url-join: ^4.0.0
     dependencies:
-      '@sqh-cli/request': link:../request
+      '@sqh-cli/request': file:kits/request
       semver: 7.3.8
       url-join: 4.0.1
 
   kits/get-template-info:
     specifiers:
-      '@sqh-cli/request': ^0.0.2
+      '@sqh-cli/request': file:../request
     dependencies:
-      '@sqh-cli/request': link:../request
+      '@sqh-cli/request': file:kits/request
 
   kits/log:
     specifiers:
@@ -132,13 +132,19 @@ importers:
     specifiers:
       '@sqh-cli/log': file:../log
       chalk: ^4.1.2
+      glob: ^8.1.0
       kind-of: ^6.0.3
       ora: ^5.4.1
+      path-exists: 4.0.0
+      trash: ^7.2.0
     dependencies:
       '@sqh-cli/log': file:kits/log
       chalk: 4.1.2
+      glob: 8.1.0
       kind-of: 6.0.3
       ora: 5.4.1
+      path-exists: 4.0.0
+      trash: 7.2.0
 
   models/command:
     specifiers:
@@ -150,9 +156,9 @@ importers:
 
   models/package:
     specifiers:
-      '@sqh-cli/get-npm-info': ^0.1.0
-      '@sqh-cli/log': ^0.0.2
-      '@sqh-cli/utils': ^0.0.2
+      '@sqh-cli/get-npm-info': file:../../kits/get-npm-info
+      '@sqh-cli/log': file:../../kits/log
+      '@sqh-cli/utils': file:../../kits/utils
       fs-extra: ^11.1.0
       inquirer: 8.2.5
       npminstall: ^7.4.1
@@ -160,9 +166,9 @@ importers:
       pkg-dir: ^5.0.0
       semver: ^7.3.8
     dependencies:
-      '@sqh-cli/get-npm-info': link:../../kits/get-npm-info
-      '@sqh-cli/log': link:../../kits/log
-      '@sqh-cli/utils': link:../../kits/utils
+      '@sqh-cli/get-npm-info': file:kits/get-npm-info
+      '@sqh-cli/log': file:kits/log
+      '@sqh-cli/utils': file:kits/utils
       fs-extra: 11.1.0
       inquirer: 8.2.5
       npminstall: 7.5.0
@@ -817,88 +823,21 @@ packages:
       typescript: 4.9.5
     dev: true
 
-  /@sqh-cli/cli/0.0.9:
-    resolution: {integrity: sha512-vEEJ3t+H08Jz+tPz7Kwf8GHTywHdfQcqHR/sk5r9QiXBuRk4PRQF2xXcuDOJtUtm+Q5EIL41rMeZBELQyQhMSA==}
-    dependencies:
-      '@sqh-cli/exec': 0.0.8
-      '@sqh-cli/get-npm-info': 0.0.6
-      '@sqh-cli/log': 0.0.2
-      '@sqh-cli/utils': 0.0.2
-      chalk: 4.1.2
-      commander: 10.0.0
-      dedent: 0.7.0
-      dotenv: 16.0.3
-      figlet: 1.5.2
-      path-exists: 4.0.0
-      root-check: 1.0.0
-      semver: 7.3.8
-    transitivePeerDependencies:
-      - bluebird
-      - debug
-      - supports-color
+  /@sindresorhus/df/1.0.1:
+    resolution: {integrity: sha512-1Hyp7NQnD/u4DSxR2DGW78TF9k7R0wZ8ev0BpMAIzA6yTQSHqNb5wTuvtcPYf4FWbVse2rW7RgDsyL8ua2vXHw==}
+    engines: {node: '>=0.10.0'}
     dev: false
 
-  /@sqh-cli/exec/0.0.8:
-    resolution: {integrity: sha512-NPcTNLXKaEqN+rml74yaEu9dhuSHrcMXL8+rbVGK2FsAs8mt9sIN4h2inBYUUyx7lc36sxYmJMwgFhMF/FfOkw==}
+  /@sindresorhus/df/3.1.1:
+    resolution: {integrity: sha512-SME/vtXaJcnQ/HpeV6P82Egy+jThn11IKfwW8+/XVoRD0rmPHVTeKMtww1oWdVnMykzVPjmrDN9S8NBndPEHCQ==}
+    engines: {node: '>=8'}
     dependencies:
-      '@sqh-cli/log': 0.0.2
-      '@sqh-cli/package': 0.0.7
-      '@sqh-cli/utils': 0.0.2
-    transitivePeerDependencies:
-      - bluebird
-      - debug
-      - supports-color
+      execa: 2.1.0
     dev: false
 
-  /@sqh-cli/get-npm-info/0.0.6:
-    resolution: {integrity: sha512-iaL+ns6FstaePr25vF7k2M9eOgz2u4Er1RYjT0NVGHInVOnzm8NGZa3JzPf7BRFx1uVizd7fL20iUKLBZlXR2Q==}
-    dependencies:
-      '@sqh-cli/request': 0.0.2
-      semver: 7.3.8
-      url-join: 4.0.1
-    transitivePeerDependencies:
-      - debug
-    dev: false
-
-  /@sqh-cli/log/0.0.2:
-    resolution: {integrity: sha512-AA8ALgN1Ofjc2deDx4X8jook04qOpIo8uYvuPNUhH+vhYos15UksxtChhBoZeGVu8zHNehY2xIf4w+J04mzR+Q==}
-    dependencies:
-      npmlog: 7.0.1
-    dev: false
-
-  /@sqh-cli/package/0.0.7:
-    resolution: {integrity: sha512-HuCPtHVrdcRKlQmYUfrFXx/1ivfghUOA5lJFMfbPEGR/C8b/cyyivuIJlfeesiIZvpc7iH1dRtRZuHPzZOe/bQ==}
-    dependencies:
-      '@sqh-cli/get-npm-info': 0.0.6
-      '@sqh-cli/log': 0.0.2
-      '@sqh-cli/utils': 0.0.2
-      fs-extra: 11.1.0
-      inquirer: 8.2.5
-      npminstall: 7.5.0
-      path-exists: 4.0.0
-      pkg-dir: 5.0.0
-      semver: 7.3.8
-    transitivePeerDependencies:
-      - bluebird
-      - debug
-      - supports-color
-    dev: false
-
-  /@sqh-cli/request/0.0.2:
-    resolution: {integrity: sha512-6tp7G6hV05V3nXIVK3r/+vicO6r6zkstmXKP/AAhzx1u2pgZ/dN1HlZEA0bIni9MVl0AC8pWXSkQfaNm5ERfwg==}
-    dependencies:
-      axios: 1.3.4
-    transitivePeerDependencies:
-      - debug
-    dev: false
-
-  /@sqh-cli/utils/0.0.2:
-    resolution: {integrity: sha512-3fjsdmWn1h7SZdXDJVi7HRpWkIGCYE+JQo/EXOz95uzpTdryRL79W/5c4FSchJpEvFnHkXZ4VfWwM8DIT6rkCQ==}
-    dependencies:
-      '@sqh-cli/log': 0.0.2
-      chalk: 4.1.2
-      kind-of: 6.0.3
-      ora: 5.4.1
+  /@stroncium/procfs/1.2.1:
+    resolution: {integrity: sha512-X1Iui3FUNZP18EUvysTHxt+Avu2nlVzyf90YM8OYgP6SGzTzzX/0JgObfO1AQQDzuZtNNz29bVh8h5R97JrjxA==}
+    engines: {node: '>=8'}
     dev: false
 
   /@tootallnate/once/2.0.0:
@@ -1079,9 +1018,21 @@ packages:
     resolution: {integrity: sha512-c5AMf34bKdvPhQ7tBGhqkgKNUzMr4WUs+WDtC2ZUGOUncbxKMTvqxYctiseW3+L4bA8ec+GcZ6/A/FW4m8ukng==}
     dev: true
 
+  /array-union/1.0.2:
+    resolution: {integrity: sha512-Dxr6QJj/RdU/hCaBjOfxW+q6lyuVE6JFWIrAUpuOOhoJJoQ99cUn3igRaHVB5P9WrgFVN0FfArM3x0cueOU8ng==}
+    engines: {node: '>=0.10.0'}
+    dependencies:
+      array-uniq: 1.0.3
+    dev: false
+
   /array-union/2.1.0:
     resolution: {integrity: sha512-HGyxoOTYUyCM6stUe6EJgnd4EoewAI7zMdfqO+kGjnlZmBDz/cR5pf8r/cR4Wq60sL/p0IkcjUEEPwS3GFrIyw==}
     engines: {node: '>=8'}
+
+  /array-uniq/1.0.3:
+    resolution: {integrity: sha512-MNha4BWQ6JbwhFhj03YK552f7cb3AzoE8SzeljgChvL1dl3IcvggXVz1DilzySZkCja+CXuZbdW7yATchWn8/Q==}
+    engines: {node: '>=0.10.0'}
+    dev: false
 
   /arrify/1.0.1:
     resolution: {integrity: sha512-3CYzex9M9FGQjCGMGyi6/31c8GJbgb0qGyrx5HWxPd0aCwh4cB2YjMb2Xf9UuoogrMrlO9cTqnB5rI5GHZTcUA==}
@@ -1742,6 +1693,13 @@ packages:
       utility: 1.17.0
     dev: false
 
+  /dir-glob/2.2.2:
+    resolution: {integrity: sha512-f9LBi5QWzIW3I6e//uxZoLBlUt9kcp66qo0sSCxL6YZKc75R1c4MFCoe/LaZiBGmgujvQdxc5Bn3QhfyvK5Hsw==}
+    engines: {node: '>=4'}
+    dependencies:
+      path-type: 3.0.0
+    dev: false
+
   /dir-glob/3.0.1:
     resolution: {integrity: sha512-WkrWp9GR4KXfKGYzOLmTuGVi1UWFfws377n9cc55/tb6DuqyF6pcQ5AbiHEshaDpY9v6oaSr2XCDidGmMwdzIA==}
     engines: {node: '>=8'}
@@ -1875,6 +1833,21 @@ packages:
   /events/3.3.0:
     resolution: {integrity: sha512-mQw+2fkQbALzQ7V0MY0IqdnXNOeTtP4r0lN9z7AAawCXgqea7bDii20AYrIBrFd/Hx0M2Ocz6S111CaFkUcb0Q==}
     engines: {node: '>=0.8.x'}
+    dev: false
+
+  /execa/2.1.0:
+    resolution: {integrity: sha512-Y/URAVapfbYy2Xp/gb6A0E7iR8xeqOCXsuuaoMn7A5PzrXUK84E1gyiEfq0wQd/GHA6GsoHWwhNq8anb0mleIw==}
+    engines: {node: ^8.12.0 || >=9.7.0}
+    dependencies:
+      cross-spawn: 7.0.3
+      get-stream: 5.2.0
+      is-stream: 2.0.1
+      merge-stream: 2.0.0
+      npm-run-path: 3.1.0
+      onetime: 5.1.2
+      p-finally: 2.0.1
+      signal-exit: 3.0.7
+      strip-final-newline: 2.0.0
     dev: false
 
   /execa/5.0.0:
@@ -2132,6 +2105,13 @@ packages:
     engines: {node: '>=8'}
     dev: true
 
+  /get-stream/5.2.0:
+    resolution: {integrity: sha512-nBF+F1rAZVCu/p7rjzgA+Yb4lfYXrpl7a6VmJrU8wF9I1CKvP/QwPNZHnOlwbTkY6dvtFIzFMSyQXbLoTQPRpA==}
+    engines: {node: '>=8'}
+    dependencies:
+      pump: 3.0.0
+    dev: false
+
   /get-stream/6.0.0:
     resolution: {integrity: sha512-A1B3Bh1UmL0bidM/YX2NsCOTnGJePL9rO/M+Mw3m9f2gUpfokS0hi5Eah0WSUEWZdZhIZtMjkIYS7mDfOqNHbg==}
     engines: {node: '>=10'}
@@ -2237,6 +2217,18 @@ packages:
       ignore: 5.2.4
       merge2: 1.4.1
       slash: 3.0.0
+
+  /globby/7.1.1:
+    resolution: {integrity: sha512-yANWAN2DUcBtuus5Cpd+SKROzXHs2iVXFZt/Ykrfz6SAXqacLX25NZpltE+39ceMexYF4TtEadjuSTw8+3wX4g==}
+    engines: {node: '>=4'}
+    dependencies:
+      array-union: 1.0.2
+      dir-glob: 2.2.2
+      glob: 7.2.3
+      ignore: 3.3.10
+      pify: 3.0.0
+      slash: 1.0.0
+    dev: false
 
   /graceful-fs/4.2.10:
     resolution: {integrity: sha512-9ByhssR2fPVsNZj478qUUbKfmL0+t5BDVyjShtyZZLiK7ZDAArFFfopyOTj0M05wE2tJPisA4iTnnXl2YoPvOA==}
@@ -2373,6 +2365,10 @@ packages:
     engines: {node: ^14.17.0 || ^16.13.0 || >=18.0.0}
     dependencies:
       minimatch: 6.2.0
+    dev: false
+
+  /ignore/3.3.10:
+    resolution: {integrity: sha512-Pgs951kaMm5GXP7MOvxERINe3gsaVjUWFm+UZPSq9xYriQAksyhg0csnS0KXSNRD5NmNdapXEpjxG49+AKh/ug==}
     dev: false
 
   /ignore/5.2.4:
@@ -2515,6 +2511,11 @@ packages:
     resolution: {integrity: sha512-drqDG3cbczxxEJRoOXcOjtdp1J/lyp1mNn0xaznRs8+muBhgQcrnbspox5X5fOw0HnMnbfDzvnEMEtqDEJEo8w==}
     engines: {node: '>=8'}
     dev: true
+
+  /is-path-inside/3.0.3:
+    resolution: {integrity: sha512-Fd4gABb+ycGAmKou8eMftCupSir5lRxqf4aD/vd0cD2qc4HL07OjCeuHMr8Ro4CoMaeCKDB0/ECBOVWjTwUvPQ==}
+    engines: {node: '>=8'}
+    dev: false
 
   /is-plain-obj/1.1.0:
     resolution: {integrity: sha512-yvkRyxmFKEOQ4pNXCmJG5AEQNlXJS5LaONXo5/cLdTZdWvsZ1ioJEonLGAosKlMWE8lwUy/bJzMjcw8az73+Fg==}
@@ -2890,7 +2891,6 @@ packages:
     engines: {node: '>=8'}
     dependencies:
       semver: 6.3.0
-    dev: true
 
   /make-fetch-happen/10.2.1:
     resolution: {integrity: sha512-NgOPbRiaQM10DYXvN3/hhGVI2M5MtITFryzBGxHM5p4wnFxsVCbxkrBrDsk+EZ5OB4jEOT7AjDxtdF+KVEFT7w==}
@@ -3137,6 +3137,22 @@ packages:
 
   /moment/2.29.4:
     resolution: {integrity: sha512-5LC9SOxjSc2HF6vO2CyuTDNivEdoz2IvyJJGj6X8DJ0eFyfszE0QiEd+iXmBvUP3WHxSjFH/vIsA0EN00cgr8w==}
+    dev: false
+
+  /mount-point/3.0.0:
+    resolution: {integrity: sha512-jAhfD7ZCG+dbESZjcY1SdFVFqSJkh/yGbdsifHcPkvuLRO5ugK0Ssmd9jdATu29BTd4JiN+vkpMzVvsUgP3SZA==}
+    engines: {node: '>=0.10.0'}
+    dependencies:
+      '@sindresorhus/df': 1.0.1
+      pify: 2.3.0
+      pinkie-promise: 2.0.1
+    dev: false
+
+  /move-file/2.1.0:
+    resolution: {integrity: sha512-i9qLW6gqboJ5Ht8bauZi7KlTnQ3QFpBCvMvFfEcHADKgHGeJ9BZMO7SFCTwHPV9Qa0du9DYY1Yx3oqlGt30nXA==}
+    engines: {node: '>=10.17'}
+    dependencies:
+      path-exists: 4.0.0
     dev: false
 
   /ms/2.1.2:
@@ -3435,6 +3451,13 @@ packages:
       - supports-color
     dev: false
 
+  /npm-run-path/3.1.0:
+    resolution: {integrity: sha512-Dbl4A/VfiVGLgQv29URL9xshU8XDY1GeLy+fsaZ1AA8JDSfjvr5P5+pzRbWqRSBxk6/DW7MIh8lTM/PaGnP2kg==}
+    engines: {node: '>=8'}
+    dependencies:
+      path-key: 3.1.1
+    dev: false
+
   /npm-run-path/4.0.1:
     resolution: {integrity: sha512-S48WzZW777zhNIrn7gxOlISNAqi9ZC/uQFnRdbeIHhZhCA6UqpkOT8T1G7BvfdgP4Er8gF4sUbaS0i7QvIfCWw==}
     engines: {node: '>=8'}
@@ -3614,6 +3637,11 @@ packages:
       strip-ansi: 6.0.1
       wcwidth: 1.0.1
 
+  /os-homedir/1.0.2:
+    resolution: {integrity: sha512-B5JU3cabzk8c67mRRd3ECmROafjYMXbuzlwtqdM8IbS8ktlTix8aFGb2bAGKrSRIlnfKwovGUUr72JUPyOb6kQ==}
+    engines: {node: '>=0.10.0'}
+    dev: false
+
   /os-name/1.0.3:
     resolution: {integrity: sha512-f5estLO2KN8vgtTRaILIgEGBoBrMnZ3JQ7W9TMZCnOIGwHe8TRGSpcagnWDo+Dfhd/z08k9Xe75hvciJJ8Qaew==}
     engines: {node: '>=0.10.0'}
@@ -3639,6 +3667,11 @@ packages:
     resolution: {integrity: sha512-LICb2p9CB7FS+0eR1oqWnHhp0FljGLZCWBE9aix0Uye9W8LTQPwMTYVGWQWIw9RdQiDg4+epXQODwIYJtSJaow==}
     engines: {node: '>=4'}
     dev: true
+
+  /p-finally/2.0.1:
+    resolution: {integrity: sha512-vpm09aKwq6H9phqRQzecoDpD8TmVyGw70qmWlyq5onxY7tqyTTFVvxMykxQSQKILBSFlbXpypIw2T1Ml7+DDtw==}
+    engines: {node: '>=8'}
+    dev: false
 
   /p-limit/1.3.0:
     resolution: {integrity: sha512-vvcXsLAJ9Dr5rQOPk7toZQZJApBl2K4J6dANSsEuh6QI41JYcsS/qhTGa9ErIUUgK3WNQoJYvylxvjqmiqEA9Q==}
@@ -3877,7 +3910,6 @@ packages:
     engines: {node: '>=4'}
     dependencies:
       pify: 3.0.0
-    dev: true
 
   /path-type/4.0.0:
     resolution: {integrity: sha512-gDKb8aZMDeD/tZWs9P6+q0J9Mwkdl6xMV8TjnGP3qJVJ06bdMgkbBlLU8IdfOsIsFz2BW1rNVT3XuNEl8zPAvw==}
@@ -3896,12 +3928,10 @@ packages:
   /pify/2.3.0:
     resolution: {integrity: sha512-udgsAY+fTnvv7kI7aaxbqwWNb0AHiB0qBO89PZKPkoTmGOgdbrHDKD+0B2X4uTfJ/FT1R09r9gTsjUjNJotuog==}
     engines: {node: '>=0.10.0'}
-    dev: true
 
   /pify/3.0.0:
     resolution: {integrity: sha512-C3FsVNH1udSEX48gGX1xfvwTWfsYWj5U+8/uK15BGzIGrKoUpghX8hWZwa/OFnakBiiVNmBvemTJR5mcy7iPcg==}
     engines: {node: '>=4'}
-    dev: true
 
   /pify/4.0.1:
     resolution: {integrity: sha512-uB80kBFb/tfd68bVleG9T5GGsGPjJrLAUpR5PZIrhBnIaRTQRjqdJSsIKkOP6OAIFbj7GOrcudc5pNjZ+geV2g==}
@@ -3912,6 +3942,18 @@ packages:
     resolution: {integrity: sha512-eW/gHNMlxdSP6dmG6uJip6FXN0EQBwm2clYYd8Wul42Cwu/DK8HEftzsapcNdYe2MfLiIwZqsDk2RDEsTE79hA==}
     engines: {node: '>=10'}
     dev: true
+
+  /pinkie-promise/2.0.1:
+    resolution: {integrity: sha512-0Gni6D4UcLTbv9c57DfxDGdr41XfgUjqWZu492f0cIGr16zDU06BWP/RAEvOuo7CQ0CNjHaLlM59YJJFm3NWlw==}
+    engines: {node: '>=0.10.0'}
+    dependencies:
+      pinkie: 2.0.4
+    dev: false
+
+  /pinkie/2.0.4:
+    resolution: {integrity: sha512-MnUuEycAemtSaeFSjXKW/aroV7akBbY+Sv+RkyqFjgAe73F+MR0TBWKBRDkmfWq/HiFmdavfZ1G7h4SPZXaCSg==}
+    engines: {node: '>=0.10.0'}
+    dev: false
 
   /pkg-dir/4.2.0:
     resolution: {integrity: sha512-HRDzbaKjC+AOWVXxAU/x54COGeIv9eb+6CkDSQoNTt4XyWoIJvuPsXizxu/Fr23EiekbtZwmh1IcIG/l/a10GQ==}
@@ -4251,7 +4293,6 @@ packages:
   /semver/6.3.0:
     resolution: {integrity: sha512-b39TBaTSfV6yBrapU89p5fKekE2m/NwnDocOVruQFS1/veMgdzuPcnOM34M6CwxW8jH/lxEa5rBoDeUwu5HHTw==}
     hasBin: true
-    dev: true
 
   /semver/7.3.4:
     resolution: {integrity: sha512-tCfb2WLjqFAtXn4KEdxIhalnRtoKFN7nAwj0B3ZXCbQloV2tq5eDbcTmT68JJD3nRJq24/XgxtQKFIpQdtvmVw==}
@@ -4301,6 +4342,11 @@ packages:
     transitivePeerDependencies:
       - bluebird
       - supports-color
+    dev: false
+
+  /slash/1.0.0:
+    resolution: {integrity: sha512-3TYDR7xWt4dIqV2JauJr+EJeW356RXijHeUlO+8djJ+uBXPn8/2dpzBc8yQhh583sVvc9CvFAeQVgijsH+PNNg==}
+    engines: {node: '>=0.10.0'}
     dev: false
 
   /slash/3.0.0:
@@ -4587,6 +4633,20 @@ packages:
     resolution: {integrity: sha512-N3WMsuqV66lT30CrXNbEjx4GEwlow3v6rr4mCcv6prnfwhS01rkgyFdjPNBYd9br7LpXV1+Emh01fHnq2Gdgrw==}
     dev: true
 
+  /trash/7.2.0:
+    resolution: {integrity: sha512-3bR8Z5aWO8b9qybS6skBoaavH/hX9Onb1RrdIIhJxv9VpH3aBtpbKuAX4rIh/0xpDZ7K4ga36wONk/okbhjTlA==}
+    engines: {node: '>=10'}
+    dependencies:
+      '@stroncium/procfs': 1.2.1
+      globby: 7.1.1
+      is-path-inside: 3.0.3
+      make-dir: 3.1.0
+      move-file: 2.1.0
+      p-map: 4.0.0
+      uuid: 8.3.2
+      xdg-trashdir: 3.1.0
+    dev: false
+
   /treeverse/2.0.0:
     resolution: {integrity: sha512-N5gJCkLu1aXccpOTtqV6ddSEi6ZmGkh3hjmbu1IjcavJK4qyOVQmi0myQKM7z5jVGmD68SJoliaVrMmVObhj6A==}
     engines: {node: ^12.13.0 || ^14.15.0 || >=16.0.0}
@@ -4749,6 +4809,13 @@ packages:
       undici: 5.20.0
     dev: false
 
+  /user-home/2.0.0:
+    resolution: {integrity: sha512-KMWqdlOcjCYdtIJpicDSFBQ8nFwS2i9sslAd6f4+CBGcU4gist2REnr2fxj2YocvJFxSF3ZOHLYLVZnUxv4BZQ==}
+    engines: {node: '>=0.10.0'}
+    dependencies:
+      os-homedir: 1.0.2
+    dev: false
+
   /util-deprecate/1.0.2:
     resolution: {integrity: sha512-EPD5q1uXyFxJpCrLnCc1nHnq3gOa6DZBocAIiI2TaSCA7VCJ1UJDMagCzIkXNsUYfD1daK//LTEQ8xiIbrHtcw==}
 
@@ -4766,7 +4833,6 @@ packages:
   /uuid/8.3.2:
     resolution: {integrity: sha512-+NYs2QeMWy+GWFOEm9xnn6HCDp0l7QBD7ml8zLUmJ+93Q5NF0NocErnwkTkXVFNiX3/fpC6afS8Dhb/gz7R7eg==}
     hasBin: true
-    dev: true
 
   /v8-compile-cache/2.3.0:
     resolution: {integrity: sha512-l8lCEmLcLYZh4nbunNZvQCJc5pv7+RCwa8q/LdUx8u7lsWvPDKmpodJAJNwkAhJC//dFY48KuIEmjtd4RViDrA==}
@@ -4917,6 +4983,21 @@ packages:
       write-json-file: 3.2.0
     dev: true
 
+  /xdg-basedir/4.0.0:
+    resolution: {integrity: sha512-PSNhEJDejZYV7h50BohL09Er9VaIefr2LMAf3OEmpCkjOi34eYyQYAXUTjEQtZJTKcF0E2UKTh+osDLsgNim9Q==}
+    engines: {node: '>=8'}
+    dev: false
+
+  /xdg-trashdir/3.1.0:
+    resolution: {integrity: sha512-N1XQngeqMBoj9wM4ZFadVV2MymImeiFfYD+fJrNlcVcOHsJFFQe7n3b+aBoTPwARuq2HQxukfzVpQmAk1gN4sQ==}
+    engines: {node: '>=10'}
+    dependencies:
+      '@sindresorhus/df': 3.1.1
+      mount-point: 3.0.0
+      user-home: 2.0.0
+      xdg-basedir: 4.0.0
+    dev: false
+
   /xtend/4.0.2:
     resolution: {integrity: sha512-LKYU1iAXJXUgAXn9URjiu+MWhyUXHsvfp7mcuYm9dSUKK0/CjtrUwFAxD82/mCWbtLsGjFIad0wIsod4zrTAEQ==}
     engines: {node: '>=0.4'}
@@ -4976,12 +5057,81 @@ packages:
     engines: {node: '>=10'}
     dev: false
 
+  file:core/cli:
+    resolution: {directory: core/cli, type: directory}
+    name: '@sqh-cli/cli'
+    version: 0.1.0
+    dependencies:
+      '@sqh-cli/exec': file:core/exec
+      '@sqh-cli/get-npm-info': file:kits/get-npm-info
+      '@sqh-cli/log': file:kits/log
+      '@sqh-cli/utils': file:kits/utils
+      chalk: 4.1.2
+      commander: 10.0.0
+      dedent: 0.7.0
+      dotenv: 16.0.3
+      figlet: 1.5.2
+      path-exists: 4.0.0
+      root-check: 1.0.0
+      semver: 7.3.8
+    transitivePeerDependencies:
+      - bluebird
+      - debug
+      - supports-color
+    dev: false
+
+  file:core/exec:
+    resolution: {directory: core/exec, type: directory}
+    name: '@sqh-cli/exec'
+    version: 0.1.0
+    dependencies:
+      '@sqh-cli/log': file:kits/log
+      '@sqh-cli/package': file:models/package
+      '@sqh-cli/utils': file:kits/utils
+    transitivePeerDependencies:
+      - bluebird
+      - debug
+      - supports-color
+    dev: false
+
+  file:kits/get-npm-info:
+    resolution: {directory: kits/get-npm-info, type: directory}
+    name: '@sqh-cli/get-npm-info'
+    version: 0.1.0
+    dependencies:
+      '@sqh-cli/request': file:kits/request
+      semver: 7.3.8
+      url-join: 4.0.1
+    transitivePeerDependencies:
+      - debug
+    dev: false
+
+  file:kits/get-template-info:
+    resolution: {directory: kits/get-template-info, type: directory}
+    name: '@sqh-cli/get-template-info'
+    version: 0.1.0
+    dependencies:
+      '@sqh-cli/request': file:kits/request
+    transitivePeerDependencies:
+      - debug
+    dev: false
+
   file:kits/log:
     resolution: {directory: kits/log, type: directory}
     name: '@sqh-cli/log'
     version: 0.0.2
     dependencies:
       npmlog: 7.0.1
+    dev: false
+
+  file:kits/request:
+    resolution: {directory: kits/request, type: directory}
+    name: '@sqh-cli/request'
+    version: 0.0.2
+    dependencies:
+      axios: 1.3.4
+    transitivePeerDependencies:
+      - debug
     dev: false
 
   file:kits/utils:
@@ -4993,4 +5143,34 @@ packages:
       chalk: 4.1.2
       kind-of: 6.0.3
       ora: 5.4.1
+      trash: 7.2.0
+    dev: false
+
+  file:models/command:
+    resolution: {directory: models/command, type: directory}
+    name: '@sqh-cli/command'
+    version: 0.0.2
+    dependencies:
+      '@sqh-cli/utils': file:kits/utils
+      semver: 7.3.8
+    dev: false
+
+  file:models/package:
+    resolution: {directory: models/package, type: directory}
+    name: '@sqh-cli/package'
+    version: 0.1.0
+    dependencies:
+      '@sqh-cli/get-npm-info': file:kits/get-npm-info
+      '@sqh-cli/log': file:kits/log
+      '@sqh-cli/utils': file:kits/utils
+      fs-extra: 11.1.0
+      inquirer: 8.2.5
+      npminstall: 7.5.0
+      path-exists: 4.0.0
+      pkg-dir: 5.0.0
+      semver: 7.3.8
+    transitivePeerDependencies:
+      - bluebird
+      - debug
+      - supports-color
     dev: false
