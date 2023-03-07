@@ -2,6 +2,7 @@
 
 const path = require('path');
 const os = require('os');
+const minimist = require('minimist');
 const semver = require('semver');
 const chalk = require('chalk');
 const figlet = require('figlet');
@@ -27,9 +28,9 @@ const DEFAULT_CLI_REGISTRY = 'https://registry.npmmirror.com'; // 默认 npm 源
  * 脚手架主函数
  *
  */
-async function cli() {
+async function cli(argv) {
   try {
-    await prepare();
+    await prepare(minimist(argv));
     registerCommand();
   } catch (err) {
     errorLogProcess('cli', err, globalOpts.debug);
@@ -39,12 +40,13 @@ async function cli() {
 /**
  * 阶段一：执行准备
  *
+ * @param {Object} argv
  */
-async function prepare() {
+async function prepare(argv) {
   checkRoot();
   checkUserHome();
   checkEnv();
-  await checkGlobalUpdate();
+  await checkGlobalUpdate(argv.registry);
 }
 
 /**
@@ -131,10 +133,11 @@ function createDefaultConfig() {
  * 检查脚手架版本并提示更新
  *
  */
-async function checkGlobalUpdate() {
+async function checkGlobalUpdate(registry) {
   const currentVersion = pkg.version;
+
   const npmName = pkg.name;
-  const latestVersion = await getNpmLatestVersion(npmName);
+  const latestVersion = await getNpmLatestVersion(npmName, registry);
 
   if (latestVersion && semver.gt(latestVersion, currentVersion)) {
     console.log(boxen(

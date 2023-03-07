@@ -34,6 +34,7 @@
     "dotenv": "^16.0.3",
     "figlet": "^1.5.2",
     "import-local": "^3.1.0",
+    "minimist": "^1.2.8",
     "path-exists": "^4.0.0",
     "root-check": "^1.0.0",
     "semver": "^7.3.8"
