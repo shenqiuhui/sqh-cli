@@ -2,6 +2,13 @@
 
 此项目所有的变更都在该文件中维护。
 
+## [v0.1.0](https://github.com/shenqiuhui/sqh-cli/tree/v0.0.9) (2023-03-07)
+
+- **publish:** @sqh-cli/cli@0.2.1
+- **publish:** @sqh-cli/create@0.2.1
+
+- **feat:** 更新检测提示优化
+
 ## [v0.0.9](https://github.com/shenqiuhui/sqh-cli/tree/v0.0.9) (2023-03-04)
 
 - **publish:** @sqh-cli/init@0.2.0
