@@ -5099,7 +5099,7 @@ packages:
   file:core/cli:
     resolution: {directory: core/cli, type: directory}
     name: '@sqh-cli/cli'
-    version: 0.2.0
+    version: 0.2.1
     hasBin: true
     dependencies:
       '@sqh-cli/exec': file:core/exec
@@ -5113,6 +5113,7 @@ packages:
       dotenv: 16.0.3
       figlet: 1.5.2
       import-local: 3.1.0
+      minimist: 1.2.8
       path-exists: 4.0.0
       root-check: 1.0.0
       semver: 7.3.8
