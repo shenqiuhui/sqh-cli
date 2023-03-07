@@ -27,6 +27,7 @@
     "@sqh-cli/get-npm-info": "file:../../kits/get-npm-info",
     "@sqh-cli/log": "file:../../kits/log",
     "@sqh-cli/utils": "file:../../kits/utils",
+    "boxen": "5.1.2",
     "chalk": "^4.1.2",
     "commander": "^10.0.0",
     "dedent": "^0.7.0",

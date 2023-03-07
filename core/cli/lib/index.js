@@ -5,6 +5,7 @@ const os = require('os');
 const semver = require('semver');
 const chalk = require('chalk');
 const figlet = require('figlet');
+const boxen = require('boxen');
 const pathExists = require('path-exists');
 const dedent = require('dedent');
 const commander = require('commander');
@@ -136,10 +137,19 @@ async function checkGlobalUpdate() {
   const latestVersion = await getNpmLatestVersion(npmName);
 
   if (latestVersion && semver.gt(latestVersion, currentVersion)) {
-    log.warn('cli', chalk.yellowBright(dedent`
-      ${npmName} 发现新版本 v${latestVersion}，当前版本为 v${currentVersion}
-      更新命令：npm install -g ${npmName}
-    `));
+    console.log(boxen(
+      dedent`
+        发现新版本：${chalk.redBright(`v${currentVersion}`)} → ${chalk.greenBright(`v${latestVersion}`)}
+
+        更新执行：${chalk.magentaBright(`npm install -g ${npmName}`)}
+      `,
+      {
+        padding: 1,
+        margin: 1,
+        borderColor: 'yellow',
+        borderStyle: 'round'
+      }
+    ));
   } else {
     log.info('cli', currentVersion);
   }
