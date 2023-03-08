@@ -2,7 +2,13 @@
 
 此项目所有的变更都在该文件中维护。
 
-## [v0.1.0](https://github.com/shenqiuhui/sqh-cli/tree/v0.0.9) (2023-03-07)
+## [v0.1.1](https://github.com/shenqiuhui/sqh-cli/tree/v0.1.1) (2023-03-09)
+
+- **publish:** @sqh-cli/init@0.2.1
+
+- **feat:** 优化 init execCommand 参数结构
+
+## [v0.1.0](https://github.com/shenqiuhui/sqh-cli/tree/v0.1.0) (2023-03-07)
 
 - **publish:** @sqh-cli/cli@0.2.1
 - **publish:** @sqh-cli/create@0.2.1
