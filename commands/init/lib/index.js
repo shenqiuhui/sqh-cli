@@ -445,7 +445,10 @@ class InitCommand extends Command {
 
       const code = `require('${execFilePath}').call(null, ${JSON.stringify(options)})`;
 
-      await this.execCommand('node', ['-e', code], '自定义模板执行失败！');
+      await this.execCommand('node', ['-e', code], {
+        errMsg: '自定义模板执行失败！'
+      });
+
       log.success(`${TYPE_NAME_MAP[this.info.type]}初始化完成`);
     } else {
       throw new Error('自定义调试模板执行文件不存在！');
@@ -577,10 +580,14 @@ class InitCommand extends Command {
     const startCmd = this.selectedTemplate.startCmd;
 
     if (manager && installCmd) {
-      const depsInstalled = await this.execCommand(manager, installCmd, '依赖安装失败！');
+      const depsInstalled = await this.execCommand(manager, installCmd, {
+        errMsg: '依赖安装失败！'
+      });
 
       if (depsInstalled && startCmd) {
-        await this.execCommand(manager, startCmd, '项目启动失败！');
+        await this.execCommand(manager, startCmd, {
+          errMsg: '项目启动失败！'
+        });
       }
     }
   }
@@ -590,11 +597,11 @@ class InitCommand extends Command {
    *
    * @param {string} program
    * @param {string|Array<string>} command
-   * @param {string} errMsg
+   * @param {object} options
    * @returns boolean
    * @memberof InitCommand
    */
-  async execCommand(program, command, errMsg) {
+  async execCommand(program, command, options) {
     if (program && command) {
       let cmdArgs;
 
@@ -613,7 +620,7 @@ class InitCommand extends Command {
       });
 
       if (exitCode !== 0) {
-        throw new Error(errMsg);
+        throw new Error(options.errMsg || '执行出错了！');
       }
 
       return true;
