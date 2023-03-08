@@ -127,6 +127,6 @@
 
 - `CLI_DEBUG_MODE` 布尔值，设置是否为调试模式，作用等于 `--debug`；
 - `CLI_HOME_PATH` 默认值 `/Users/username/.sqh-cli`，用于设置脚手架的文件存储目录，包含已安装的命令和组件的缓存等；
-- `CLI_COMMAND_PATH` 调试时指定命令的模块路径或模块的可执行文件路径；
-- `CLI_TEMPLATE_PATH` 调试时指定操作的本地模板路径；
-- `CLI_REGISTRY` 安装命令和模板等所使用的源，默认值 https://registry.npmmirror.com。
+- `CLI_COMMAND_PATH` 调试时指定命令的模块路径或模块的可执行文件路径，作用等于 `--commandPath`；
+- `CLI_TEMPLATE_PATH` 调试时指定操作的本地模板路径，作用等于 `init --templatePath`；
+- `CLI_REGISTRY` 安装命令和模板等所使用的源，默认值 https://registry.npmmirror.com
