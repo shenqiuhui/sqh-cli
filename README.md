@@ -42,7 +42,6 @@
 
 > sqh [command] -cp /Users/username/commands/init
 
-
 # Commands
 
 ## init
@@ -64,8 +63,12 @@
 规则：
 
 - 本地目录为空无论是否存在 `projectName`，都在当前目录直接创建；
-- 本地目录不为空，且命令中存在 `projectName` 时，则用 `projectName` 作为新的文件夹名称创建项目；
-- 本地目录不为空，且已存在 `projectName` 同名文件夹时，提示用户是否覆盖并创建。
+- 本地目录不为空，且命令中存在 `projectName` 时，询问是否清空目录内容：
+  - 是，则清空目录后直接在当前目录创建；
+  - 否，则用 `projectName` 作为新的文件夹名称创建项目；
+- 本地目录不为空，且已存在 `projectName` 同名文件夹时，提示用户是否覆盖：
+  - 是，直接覆盖并创建；
+  - 否，取消创建。
 
 #### --filter
 
