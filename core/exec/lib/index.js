@@ -87,8 +87,8 @@ async function exec() {
       });
 
       child.on('exit', function (exitCode) {
-        if (exitCode === 0) {
-          log.verbose('cli', `${commandChain.replace(/-/g, ' ')} 命令执行成功`);
+        if (!exitCode) {
+          log.verbose('cli', `${commandChain.replace(/-/g, ' ')} 命令执行完成`);
         }
 
         process.exit(exitCode);

@@ -44,7 +44,8 @@ class InitCommand extends Command {
     this.templates = []; // 模板列表
     this.selectedTemplate = {}; // 选中的模板
     this.info = {}; // 初始化信息
-    this.localPath = process.cwd(); // 执行命令的目录
+    this.initialLocalPath = process.cwd(); // 执行 init 的命令的路径
+    this.localPath = this.initialLocalPath; // 执行命令的路径
 
     if (this.initName && !validate(this.initName).validForNewPackages) {
       throw new Error('非法的名称，规则请查看 https://www.npmjs.com/package/validate-npm-package-name');
@@ -90,7 +91,6 @@ class InitCommand extends Command {
   async prepare() {
     if (!this.isDirEmpty(this.localPath)) {
       const switched = this.switchLocalPath();
-
       const localPathExists = switched && pathExists.sync(this.localPath);
 
       const answers = await inquirer.prompt([
@@ -121,7 +121,7 @@ class InitCommand extends Command {
           message: '发现与项目名称同名的文件夹，是否覆盖？',
           when: (answers) => {
             answers.overwrite = false;
-            return this.initName && localPathExists;
+            return answers.force && this.initName && localPathExists;
           }
         }
       ]);
@@ -437,6 +437,7 @@ class InitCommand extends Command {
 
     if (pathExists.sync(execFilePath)) {
       const options = {
+        root: this.initialLocalPath,
         cwd: this.localPath,
         info: this.info,
         selectedTemplate: this.selectedTemplate,
@@ -445,11 +446,15 @@ class InitCommand extends Command {
 
       const code = `require('${execFilePath}').call(null, ${JSON.stringify(options)})`;
 
-      await this.execCommand('node', ['-e', code], {
+      if (!pathExists.sync(this.localPath)) {
+        fse.ensureDirSync(this.localPath);
+      }
+
+      await this.execCommand({
+        program: 'node',
+        command: ['-e', code],
         errMsg: '自定义模板执行失败！'
       });
-
-      log.success(`${TYPE_NAME_MAP[this.info.type]}初始化完成`);
     } else {
       throw new Error('自定义调试模板执行文件不存在！');
     }
@@ -580,12 +585,16 @@ class InitCommand extends Command {
     const startCmd = this.selectedTemplate.startCmd;
 
     if (manager && installCmd) {
-      const depsInstalled = await this.execCommand(manager, installCmd, {
+      const depsInstalled = await this.execCommand({
+        program: manager,
+        command: installCmd,
         errMsg: '依赖安装失败！'
       });
 
       if (depsInstalled && startCmd) {
-        await this.execCommand(manager, startCmd, {
+        await this.execCommand({
+          program: manager,
+          command: startCmd,
           errMsg: '项目启动失败！'
         });
       }
@@ -595,13 +604,13 @@ class InitCommand extends Command {
   /**
    * 执行命令函数
    *
-   * @param {string} program
-   * @param {string|Array<string>} command
    * @param {object} options
    * @returns boolean
    * @memberof InitCommand
    */
-  async execCommand(program, command, options) {
+  async execCommand(options) {
+    const { program, command, errMsg } = options;
+
     if (program && command) {
       let cmdArgs;
 
@@ -615,12 +624,11 @@ class InitCommand extends Command {
 
       const exitCode = await spawnAsync(program, cmdArgs, {
         cwd: this.localPath,
-        stdio: 'inherit',
-        shell: true
+        stdio: 'inherit'
       });
 
-      if (exitCode !== 0) {
-        throw new Error(options.errMsg || '执行出错了！');
+      if (exitCode) {
+        throw new Error(errMsg || '执行出错了！');
       }
 
       return true;

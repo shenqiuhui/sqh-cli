@@ -142,7 +142,7 @@ async function checkGlobalUpdate(registry) {
   if (latestVersion && semver.gt(latestVersion, currentVersion)) {
     console.log(boxen(
       dedent`
-        发现新版本：${chalk.redBright(`v${currentVersion}`)} → ${chalk.greenBright(`v${latestVersion}`)}
+        发现新版本：${chalk.redBright(currentVersion)} → ${chalk.greenBright(latestVersion)}
 
         更新执行：${chalk.magentaBright(`npm install -g ${npmName}`)}
       `,

@@ -5,9 +5,7 @@
   "author": "shenqiuhui",
   "homepage": "https://github.com/shenqiuhui/sqh-cli#readme",
   "license": "ISC",
-  "bin": {
-    "sqh": "./bin/index.js"
-  },
+  "bin": "./bin/index.js",
   "directories": {
     "lib": "lib",
     "test": "__tests__"
