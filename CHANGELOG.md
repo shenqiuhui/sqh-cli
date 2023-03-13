@@ -2,6 +2,15 @@
 
 此项目所有的变更都在该文件中维护。
 
+## [v0.1.2](https://github.com/shenqiuhui/sqh-cli/tree/v0.1.2) (2023-03-13)
+
+- **publish:** @sqh-cli/init@0.2.2
+- **publish:** @sqh-cli/cli@0.2.2
+- **publish:** @sqh-cli/create@0.2.2
+- **publish:** @sqh-cli/exec@0.1.3
+
+- **fix:** 初始化命令自定义模板执行出错
+
 ## [v0.1.1](https://github.com/shenqiuhui/sqh-cli/tree/v0.1.1) (2023-03-09)
 
 - **publish:** @sqh-cli/init@0.2.1
