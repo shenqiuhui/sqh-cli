@@ -8,6 +8,7 @@ const { errorLogProcess, spinnerStart, spawn } = require('@sqh-cli/utils');
 // 命令对应的默认依赖名称
 const SETTINGS = {
   'sqh-init': '@sqh-cli/init',
+  'sqh-add': '@sqh-cli/add',
   'sqh-list': '@sqh-cli/list'
 };
 

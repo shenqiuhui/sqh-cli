@@ -24,7 +24,19 @@ function getComponentTemplates() {
   });
 }
 
+/**
+ * 获取代码片段模板信息
+ *
+ * @returns Promise<data>
+ */
+function getSnippetTemplates() {
+  return request({
+    url: '/snippet/templates'
+  });
+}
+
 module.exports = {
   getProjectTemplates,
-  getComponentTemplates
+  getComponentTemplates,
+  getSnippetTemplates
 };

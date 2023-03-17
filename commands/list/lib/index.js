@@ -1,15 +1,21 @@
 'use strict';
 
 const chalk = require('chalk');
+const { table, getBorderCharacters } = require('table');
 const Command = require('@sqh-cli/command');
 const log = require('@sqh-cli/log');
 const { errorLogProcess, spinnerStart } = require('@sqh-cli/utils');
-const { getProjectTemplates, getComponentTemplates } = require('@sqh-cli/get-template-info');
+const {
+  getProjectTemplates,
+  getComponentTemplates,
+  getSnippetTemplates
+} = require('@sqh-cli/get-template-info');
 
 const ALL = 'al'; // 模板类型（全部）
 const TYPE_PROJECT = 'project'; // 模板类型（项目）
 const TYPE_COMPONENT = 'component'; // 模板类型（组件）
-const TYPE_OPTION_VALUES = ['al', 'project', 'component']; // --filter 选项的值
+const TYPE_SNIPPET = 'snippet'; // 模板类型（代码片段）
+const TYPE_OPTION_VALUES = ['al', 'project', 'component', 'snippet']; // --filter 选项的值
 const FILTER_OPTION_VALUES = ['al', 'normal', 'custom']; // --filter 选项的值
 
 class ListCommand extends Command {
@@ -24,7 +30,7 @@ class ListCommand extends Command {
     this.templates = []; // 模板列表
 
     if (!TYPE_OPTION_VALUES.includes(this.type)) {
-      throw new Error('--type 选项值错误，正确的值为 "al"|"project"|"component"');
+      throw new Error('--type 选项值错误，正确的值为 "al"|"project"|"component|"snippet"');
     }
 
     if (!FILTER_OPTION_VALUES.includes(this.filter)) {
@@ -52,7 +58,7 @@ class ListCommand extends Command {
       spinner.stop();
     }
 
-    this.consoleTemplateList(this.templates);
+    this.printTemplateList(this.templates);
   }
 
   /**
@@ -70,7 +76,7 @@ class ListCommand extends Command {
     switch(this.type) {
       case ALL:
         templates = await Promise
-          .all([getProjectTemplates(), getComponentTemplates()])
+          .all([getProjectTemplates(), getComponentTemplates(), getSnippetTemplates()])
           .catch((err) => {
             callback && callback();
             errorLogProcess('cli', err, process.env.CLI_DEBUG_MODE);
@@ -83,6 +89,9 @@ class ListCommand extends Command {
         break;
       case TYPE_COMPONENT:
         templates = await getComponentTemplates();
+        break;
+      case TYPE_SNIPPET:
+        templates = await getSnippetTemplates();
         break;
     }
 
@@ -112,19 +121,37 @@ class ListCommand extends Command {
    * @param {Array<object>} templates
    * @memberof ListCommand
    */
-  consoleTemplateList(templates) {
+  printTemplateList(templates) {
     const len = templates.length;
+    const list = [];
 
-    templates.forEach(({ npmName, name }) => {
-      console.log(chalk.whiteBright(`${npmName} (${name})`));
+    templates.forEach((template) => {
+      list.push([
+        chalk.greenBright(template.name),
+        template.npmName,
+        template.version
+      ]);
     });
+
+    if (list.length > 0) {
+      list.unshift([
+        chalk.blueBright('模板名称'),
+        chalk.blueBright('模块名称'),
+        chalk.blueBright('最新版本')
+      ]);
+
+      console.log();
+      console.log(table(list, {
+        border: getBorderCharacters('norc')
+      }));
+    }
 
     log.success('cli', `found ${len} templates`);
   }
 }
 
 /**
- * list template 命令函数
+ * list 命令函数
  *
  * @returns new ListCommand
  * @param {array} argv
@@ -138,3 +165,4 @@ function list(argv) {
 }
 
 module.exports = list;
+module.exports.ListCommand = ListCommand;

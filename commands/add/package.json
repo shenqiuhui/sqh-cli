@@ -1,7 +1,7 @@
 {
-  "name": "@sqh-cli/list",
-  "version": "0.1.2",
-  "description": "sqh-cli command list",
+  "name": "@sqh-cli/add",
+  "version": "0.0.1",
+  "description": "sqh-cli command add",
   "author": "shenqiuhui",
   "homepage": "https://github.com/shenqiuhui/sqh-cli#readme",
   "license": "ISC",
@@ -21,7 +21,7 @@
     "url": "git+https://github.com/shenqiuhui/sqh-cli.git"
   },
   "scripts": {
-    "test": "node ./__tests__/@sqh-cli/list.test.js"
+    "test": "node ./__tests__/@sqh-cli/add.test.js"
   },
   "bugs": {
     "url": "https://github.com/shenqiuhui/sqh-cli/issues"
@@ -30,9 +30,15 @@
     "@sqh-cli/command": "file:../../models/command",
     "@sqh-cli/get-template-info": "file:../../kits/get-template-info",
     "@sqh-cli/log": "file:../../kits/log",
+    "@sqh-cli/package": "file:../../models/package",
     "@sqh-cli/utils": "file:../../kits/utils",
-    "chalk": "^4.1.2",
+    "chalk": "4.1.2",
+    "fs-extra": "^11.1.0",
+    "inquirer": "^8.2.5",
+    "param-case": "2.1.1",
+    "path-exists": "^4.0.0",
+    "pkg-up": "^3.1.0",
+    "semver": "^7.3.8",
     "table": "^6.8.1"
-  },
-  "gitHead": "d94f0a22cc4e2aaa42dddcbbdc3cbee0cb4a9b79"
+  }
 }

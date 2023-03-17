@@ -1,12 +1,16 @@
 'use strict';
 
+const path = require('path');
 const cp = require('child_process');
 const kindOf = require('kind-of');
+const camelCase = require('camelcase');
 const chalk = require('chalk');
 const ora = require('ora');
+const fse = require('fs-extra');
 const pathExists = require('path-exists');
 const glob = require('glob');
 const trash = require('trash');
+const ejs = require('ejs');
 const log = require('@sqh-cli/log');
 
 /**
@@ -17,6 +21,23 @@ const log = require('@sqh-cli/log');
  */
 function isObject(value) {
   return kindOf(value) === 'object';
+}
+
+/**
+   * 检查输入是否为大驼峰命名
+   *
+   * @param {string} input
+   * @returns boolean
+   */
+function isCamelCase(input) {
+  if (typeof input === 'string') {
+    return input === camelCase(input, {
+      pascalCase: true,
+      preserveConsecutiveUppercase: true
+    });
+  }
+
+  return false;
 }
 
 /**
@@ -122,12 +143,96 @@ function removeFilesTrash(path) {
   });
 }
 
+/**
+ * 编译文件模板
+ *
+ * @param {string} cwd
+ * @param {object} data
+ * @param {object} options
+ * @returns Promise<>
+ */
+function filesRender(cwd, data = {}, options = {}) {
+  return new Promise((resolve, reject) => {
+    glob('**', {
+      cwd,
+      nodir: true,
+      ...options
+    }, (err, files) => {
+      if (err) {
+        reject(err);
+      }
+
+      const tasks = files.map((file) => {
+        const filePath = path.join(cwd, file);
+
+        return new Promise((resolveInner, rejectInner) => {
+          ejs.renderFile(filePath, data, {}, (err, result) => {
+            if (err) {
+              rejectInner(err);
+            } else {
+              fse.writeFileSync(filePath, result);
+              resolveInner(result);
+            }
+          });
+        });
+      });
+
+      Promise
+        .all(tasks)
+        .then((result) =>  resolve(result))
+        .catch((err) => reject(err));
+    });
+  });
+}
+
+/**
+ * 返回目录中使用的包管理器
+ *
+ * @param {string} dir
+ * @returns string | null
+ */
+function packageManager(dir) {
+  const managers = [
+    {
+      lockfile: 'package-lock.json',
+      symbol: '.package-lock.json',
+      name: 'npm'
+    },
+    {
+      lockfile: 'yarn.lock',
+      symbol: '.yarn-integrity',
+      name: 'yarn'
+    },
+    {
+      lockfile: 'pnpm-lock.yaml',
+      symbol: '.modules.yaml',
+      name: 'pnpm'
+    }
+  ];
+
+  const managerInfo = managers.find((manager) => {
+    const symbol = pathExists.sync(path.resolve(dir, 'node_modules', manager.symbol));
+    const lockfile = pathExists.sync(path.resolve(dir, manager.lockfile));
+
+    return symbol && lockfile;
+  });
+
+  if (managerInfo) {
+    return managerInfo.name;
+  }
+
+  return null;
+}
+
 module.exports = {
   isObject,
+  isCamelCase,
   errorLogProcess,
   spinnerStart,
   sleep,
   spawn,
   spawnAsync,
-  removeFilesTrash
+  removeFilesTrash,
+  filesRender,
+  packageManager
 };

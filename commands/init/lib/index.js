@@ -7,12 +7,16 @@ const inquirer = require('inquirer');
 const semver = require('semver');
 const validate = require('validate-npm-package-name');
 const camelCase = require('camelcase');
-const ejs = require('ejs');
-const glob = require('glob');
 const Command = require('@sqh-cli/command');
 const Package = require('@sqh-cli/package');
 const log = require('@sqh-cli/log');
-const { errorLogProcess, spinnerStart, removeFilesTrash, spawnAsync } = require('@sqh-cli/utils');
+const {
+  errorLogProcess,
+  spinnerStart,
+  removeFilesTrash,
+  spawnAsync,
+  filesRender
+} = require('@sqh-cli/utils');
 const { getProjectTemplates, getComponentTemplates } = require('@sqh-cli/get-template-info');
 
 const CACHE_DIR = 'templates'; // 缓存目录名称
@@ -37,7 +41,7 @@ class InitCommand extends Command {
    * @memberof InitCommand
    */
   init() {
-    this.initName = this._argv[0] || ''; // 初始化设置的项目名称
+    this.initName = this._argv[0] || null; // 初始化设置的项目名称
     this.force = !!this._opts.force; // 是否强制初始化
     this.filter = this._opts.filter; // 过滤模板
     this.templatePath = this._opts.templatePath || process.env.CLI_TEMPLATE_PATH; // 本地模板路径
@@ -252,6 +256,7 @@ class InitCommand extends Command {
    * 获取模板数据
    *
    * @param {string} type
+   * @returns Array<object>
    * @memberof InitCommand
    */
   async getTemplates(type) {
@@ -511,7 +516,10 @@ class InitCommand extends Command {
     try {
       const ignore = this.selectedTemplate.ignore || DEFAULT_IGNORE;
 
-      await this.generateTemplateAsync(ignore);
+      await filesRender(this.localPath, this.info, {
+        ignore,
+        dot: true
+      });
       Promise.resolve().then(() => {
         log.success('模板编译完成');
         log.success(`${TYPE_NAME_MAP[this.info.type]}初始化完成`);
@@ -521,57 +529,6 @@ class InitCommand extends Command {
     } finally {
       spinner.stop();
     }
-  }
-
-  /**
-   * 编译模板主逻辑（Promise）
-   *
-   * @param {Array<string>} ignore
-   * @returns Promise
-   * @memberof InitCommand
-   */
-  generateTemplateAsync(ignore) {
-    return new Promise((resolve, reject) => {
-      glob('**', {
-        cwd: this.localPath,
-        ignore,
-        nodir: true,
-        dot: true
-      }, (err, files) => {
-        if (err) {
-          reject(err);
-        }
-
-        Promise
-          .all(this.generateRenderPromises(files))
-          .then((result) =>  resolve(result))
-          .catch((err) => reject(err));
-      });
-    });
-  }
-
-  /**
-   * 生成准备编译的文件任务
-   *
-   * @param {Array<string>} files
-   * @returns Array<Promise>
-   * @memberof InitCommand
-   */
-  generateRenderPromises(files) {
-    return files.map((file) => {
-      const filePath = path.join(this.localPath, file);
-
-      return new Promise((resolve, reject) => {
-        ejs.renderFile(filePath, this.info, {}, (err, result) => {
-          if (err) {
-            reject(err);
-          } else {
-            fse.writeFileSync(filePath, result);
-            resolve(result);
-          }
-        });
-      });
-    });
   }
 
   /**

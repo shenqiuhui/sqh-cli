@@ -21,7 +21,10 @@
   },
   "dependencies": {
     "@sqh-cli/log": "file:../log",
+    "camelcase": "^6.3.0",
     "chalk": "^4.1.2",
+    "ejs": "^3.1.8",
+    "fs-extra": "^11.1.0",
     "glob": "^8.1.0",
     "kind-of": "^6.0.3",
     "ora": "^5.4.1",

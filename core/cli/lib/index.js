@@ -56,6 +56,7 @@ async function prepare(argv) {
 function registerCommand() {
   registerMainCommand();
   registerInitCommand();
+  registerAddCommand();
   registerListCommand();
   watchOptionsAndCommands();
   argsParse();
@@ -198,6 +199,19 @@ function registerInitCommand() {
 }
 
 /**
+ * 注册 add 命令
+ *
+ */
+function registerAddCommand() {
+  program
+    .command('add [pageName]')
+    .description('添加页面代码片段到项目')
+    .option('-f, --force', '是否强制添加页面代码片段', false)
+    .option('-sp, --snippetPath <targetPath>', '指定本地代码片段调试路径')
+    .action(exec);
+}
+
+/**
  * 注册 list 命令
  *
  */
@@ -205,7 +219,7 @@ function registerListCommand() {
   program
     .command('list [options]')
     .description('查看模板列表')
-    .option('-t, --type <templateType>', '查看模板列表 "al"|"project"|"component"', 'al')
+    .option('-t, --type <templateType>', '查看模板列表 "al"|"project"|"component"|"snippet"', 'al')
     .option('-f, --filter <execType>', '过滤模板列表 "al"|"normal"|"custom"', 'al')
     .action(exec);
 }
