@@ -35,7 +35,7 @@ class AddCommand extends Command {
   init() {
     this.pageName = this._argv[0] || null; // 添加页面名称
     this.force = !!this._opts.force; // 是否强制添加
-    this.snippetPath = this._opts.snippetPath || process.env.CLI_SNIPPET_PATH; // 本地代码片段路径
+    this.templatePath = this._opts.templatePath || process.env.CLI_TEMPLATE_PATH; // 本地代码片段路径
     this.localPath = process.cwd(); // 执行命令路径
     this.templates = []; // 页面代码片段列表
 
@@ -113,7 +113,7 @@ class AddCommand extends Command {
       }
     }
 
-    if (!this.snippetPath) {
+    if (!this.templatePath) {
       const spinner = spinnerStart('获取页面模板列表...');
 
       try {
@@ -131,7 +131,7 @@ class AddCommand extends Command {
         name: 'template',
         message: '请选择页面模板',
         choices: this.createTemplateChoices(this.templates),
-        when: () => !this.snippetPath
+        when: () => !this.templatePath
       }
     ]);
 
@@ -151,7 +151,7 @@ class AddCommand extends Command {
    * @memberof AddCommand
    */
   async downloadTemplate() {
-    if (!this.snippetPath) {
+    if (!this.templatePath) {
       const homePath = process.env.CLI_HOME_PATH;
       const templateInfo = this.templates.find((template) => template.npmName === this.info.template);
       const targetPath = path.resolve(homePath, CACHE_DIR);
@@ -187,10 +187,10 @@ class AddCommand extends Command {
         }
       }
     } else {
-      log.verbose('debug: snippetPath', this.snippetPath);
+      log.verbose('debug: templatePath', this.templatePath);
 
       this.templateInterface = new Package({
-        targetPath: this.snippetPath
+        targetPath: this.templatePath
       });
     }
   }
@@ -213,12 +213,12 @@ class AddCommand extends Command {
    */
   async copyTemplate() {
     let templateSource;
-    const templateDir = this.snippetPath || this.templateInterface.getCacheFilePath();
+    const templateDir = this.templatePath || this.templateInterface.getCacheFilePath();
 
-    if (!this.snippetPath) {
+    if (!this.templatePath) {
       templateSource = path.resolve(templateDir, 'template', this.selectedTemplate.path);
     } else {
-      templateSource = this.snippetPath;
+      templateSource = this.templatePath;
     }
 
     const templateTarget = this.info.targetPath;
