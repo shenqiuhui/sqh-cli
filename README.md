@@ -56,7 +56,7 @@
 
 #### -f, --force
 
-当本地目录存在文件时，强制初始化项目。
+当本地目录存在文件时，强制初始化项目流程。
 
 > sqh init [projectName] --force
 
@@ -90,6 +90,32 @@
 
 > sqh init [projectName] -tp /Users/username/some-template
 
+## add
+
+用于给已初始化的项目添加页面模板的命令，默认添加到 `/src/pages/PageName`。
+
+### Options
+
+#### -f, --force
+
+当本已存在该页面时，询问是否强制创建页面。
+
+> sqh add [pageName] --force
+
+规则：
+
+- 提示是否覆盖已存在页面：
+  - 是，则删除原文件夹，直接覆盖；
+  - 否，则退出创建。
+
+#### -tp, --templatePath
+
+本地开发（页面/代码片段）模板的场景，用于指定命令执行时的本地文件路径。
+
+> sqh add [pageName] --templatePath=/Users/username/some-snippet-template
+
+> sqh add [pageName] -tp /Users/username/some-page-template
+
 ## list
 
 用于打印已有的模板列表。
@@ -98,11 +124,12 @@
 
 #### -t, --type
 
-用于指定模板类型（全部/项目/组件），默认为全部（值为 "al"），可选值 "al"|"project"|"component"
+用于指定模板类型（全部/项目/组件/代码片段），默认为全部（值为 "al"），可选值 "al"|"project"|"component"|"snippet"
 
 - `al` 全部模板
 - `project` 项目模板
 - `component` 组件模板
+- `snippet` 页面代码片段模板
 
 > sqh list --type=component
 
