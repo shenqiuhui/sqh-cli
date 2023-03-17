@@ -1,6 +1,6 @@
 {
   "name": "@sqh-cli/get-template-info",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "get template info",
   "author": "shenqiuhui <pandashen821@163.com>",
   "homepage": "https://github.com/shenqiuhui/sqh-cli#readme",
