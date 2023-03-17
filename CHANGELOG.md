@@ -2,6 +2,22 @@
 
 此项目所有的变更都在该文件中维护。
 
+## [v0.2.0](https://github.com/shenqiuhui/sqh-cli/tree/v0.2.0) (2023-03-18)
+
+- **publish:** @sqh-cli/add@0.1.1
+- **publish:** @sqh-cli/init@0.2.4
+- **publish:** @sqh-cli/list@0.2.1
+- **publish:** @sqh-cli/cli@0.2.4
+- **publish:** @sqh-cli/create@0.2.4
+- **publish:** @sqh-cli/exec@0.1.5
+- **publish:** @sqh-cli/get-template-info@0.2.1
+- **publish:** @sqh-cli/utils@0.3.1
+- **publish:** @sqh-cli/command@0.1.3
+- **publish:** @sqh-cli/package@0.1.4
+
+- **feat:** 新增 `add` 命令
+- **feat:** `list` 命令优化
+
 ## [v0.1.2](https://github.com/shenqiuhui/sqh-cli/tree/v0.1.2) (2023-03-13)
 
 - **publish:** @sqh-cli/init@0.2.2
