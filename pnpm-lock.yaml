@@ -50,7 +50,7 @@ importers:
       inquirer: ^8.2.5
       path-exists: ^4.0.0
       semver: ^7.3.8
-      terminal-link: 2.1.1
+      terminal-link: ^2.1.1
       validate-npm-package-name: ^5.0.0
     dependencies:
       '@sqh-cli/command': file:models/command
@@ -5257,7 +5257,7 @@ packages:
   file:core/cli:
     resolution: {directory: core/cli, type: directory}
     name: '@sqh-cli/cli'
-    version: 0.2.4
+    version: 0.3.0
     hasBin: true
     dependencies:
       '@sqh-cli/exec': file:core/exec
@@ -5284,7 +5284,7 @@ packages:
   file:core/exec:
     resolution: {directory: core/exec, type: directory}
     name: '@sqh-cli/exec'
-    version: 0.1.5
+    version: 0.2.0
     dependencies:
       '@sqh-cli/log': file:kits/log
       '@sqh-cli/package': file:models/package
