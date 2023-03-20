@@ -216,7 +216,7 @@ class AddCommand extends Command {
     const templateDir = this.templatePath || this.templateInterface.getCacheFilePath();
 
     if (!this.templatePath) {
-      templateSource = path.resolve(templateDir, 'template', this.selectedTemplate.path);
+      templateSource = path.join(templateDir, 'template', this.selectedTemplate.path);
     } else {
       templateSource = this.templatePath;
     }
