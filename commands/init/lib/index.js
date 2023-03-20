@@ -6,6 +6,7 @@ const fse = require('fs-extra');
 const inquirer = require('inquirer');
 const semver = require('semver');
 const validate = require('validate-npm-package-name');
+const terminalLink = require('terminal-link');
 const camelCase = require('camelcase');
 const Command = require('@sqh-cli/command');
 const Package = require('@sqh-cli/package');
@@ -52,7 +53,7 @@ class InitCommand extends Command {
     this.localPath = this.initialLocalPath; // 执行命令的路径
 
     if (this.initName && !validate(this.initName).validForNewPackages) {
-      throw new Error('非法的名称，规则请查看 https://www.npmjs.com/package/validate-npm-package-name');
+      throw new Error(`非法的名称，规则请查看 ${terminalLink('npm 文档', 'https://docs.npmjs.com/cli/v9/configuring-npm/package-json#name')} 和 ${terminalLink('validate-npm-package-name 使用文档', 'https://www.npmjs.com/package/validate-npm-package-name')}！`);
     }
 
     if (!FILTER_OPTION_VALUES.includes(this.filter)) {
@@ -307,7 +308,7 @@ class InitCommand extends Command {
           const done = this.async();
 
           if (!validate(value).validForNewPackages) {
-            done('非法的名称，规则请查看 https://www.npmjs.com/package/validate-npm-package-name');
+            done(`非法的名称，规则请查看 ${terminalLink('npm 文档', 'https://docs.npmjs.com/cli/v9/configuring-npm/package-json#name')} 和 ${terminalLink('validate-npm-package-name 使用文档', 'https://www.npmjs.com/package/validate-npm-package-name')}！`);
           }
 
           done(null, true);

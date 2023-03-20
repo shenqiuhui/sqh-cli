@@ -37,6 +37,7 @@
     "inquirer": "^8.2.5",
     "path-exists": "^4.0.0",
     "semver": "^7.3.8",
+    "terminal-link": "^2.1.1",
     "validate-npm-package-name": "^5.0.0"
   },
   "gitHead": "d94f0a22cc4e2aaa42dddcbbdc3cbee0cb4a9b79"
