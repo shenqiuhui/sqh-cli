@@ -2,6 +2,16 @@
 
 此项目所有的变更都在该文件中维护。
 
+## [v0.2.2](https://github.com/shenqiuhui/sqh-cli/tree/v0.2.2) (2023-03-20)
+
+- **publish:** @sqh-cli/init@0.3.0
+- **publish:** @sqh-cli/cli@0.3.0
+- **publish:** @sqh-cli/create@0.3.0
+- **publish:** @sqh-cli/exec@0.2.0
+
+- **feat:** 优化环境变量设置规则, 方便本地多命令调试
+- **feat:** 优化 `init` 命令项目名称校验提示
+
 ## [v0.2.1](https://github.com/shenqiuhui/sqh-cli/tree/v0.2.1) (2023-03-20)
 
 - **publish:** @sqh-cli/add@0.1.2
