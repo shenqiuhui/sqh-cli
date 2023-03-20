@@ -153,10 +153,20 @@
 
 优先级：`Options` 参数 > `.sqh-env` 文件 > 脚手架默认值
 
-可更改环境变量列表：
+## 可更改环境变量列表
 
 - `CLI_DEBUG_MODE` 布尔值，设置是否为调试模式，作用等于 `--debug`；
 - `CLI_HOME_PATH` 默认值 `/Users/username/.sqh-cli`，用于设置脚手架的文件存储目录，包含已安装的命令和组件的缓存等；
 - `CLI_COMMAND_PATH` 调试时指定命令的模块路径或模块的可执行文件路径，作用等于 `--commandPath`；
 - `CLI_TEMPLATE_PATH` 调试时指定操作的本地模板路径，作用等于 `init --templatePath`；
 - `CLI_REGISTRY` 安装命令和模板等所使用的源，默认值 https://registry.npmmirror.com
+
+## 多命令调试模式
+
+如果开发调试命令时，存在多个命令切换使用的问题，可以直接给对应的命令设置 `CLI_COMMAND_PATH_${commandName}` 环境变量，程序会在执行命令时获取对应环境变量的路径执行，如：
+
+- `init` 命令：`CLI_COMMAND_PATH_INIT="/Users/yourname/**/init"`
+- `add` 命令：`CLI_COMMAND_PATH_ADD="/Users/yourname/**/add"`
+- `list` 命令：`CLI_COMMAND_PATH_INIT="/Users/yourname/**/list"`
+
+注意：`CLI_HOME_PATH` 和 `--commandPath` 优先级更高。
