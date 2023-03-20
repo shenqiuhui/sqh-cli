@@ -20,10 +20,10 @@ const CACHE_DIR = 'dependencies';
  *
  */
 async function exec() {
-  const commandPath = process.env.CLI_COMMAND_PATH;
   const homePath = process.env.CLI_HOME_PATH;
   const debug = process.env.CLI_DEBUG_MODE;
   const cmdInstance = arguments[arguments.length - 1];
+  const commandPath = generateCommandPath(cmdInstance);
   const commandChain = generateCommandChain(cmdInstance);
   const packageName = SETTINGS[commandChain];
   const packageVersion = 'latest';
@@ -118,6 +118,26 @@ function generateCommandChain(program, commands = []) {
   } else {
     return commands.reverse().join('-');
   }
+}
+
+/**
+ * 根据环境变量设置命令程序的执行路径
+ *
+ * @param {object} program
+ * @returns string
+ */
+function generateCommandPath(program) {
+  if (process.env.CLI_COMMAND_PATH) {
+    return process.env.CLI_COMMAND_PATH;
+  }
+
+  const envName = `CLI_COMMAND_PATH_${program.name().toUpperCase()}`;
+
+  if (process.env[envName]) {
+    return process.env[envName];
+  }
+
+  return null;
 }
 
 module.exports = exec;
