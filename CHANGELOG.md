@@ -2,6 +2,12 @@
 
 此项目所有的变更都在该文件中维护。
 
+## [v0.2.1](https://github.com/shenqiuhui/sqh-cli/tree/v0.2.1) (2023-03-20)
+
+- **publish:** @sqh-cli/add@0.1.2
+
+- **fix:** 修复 add 命令路径拼接错误
+
 ## [v0.2.0](https://github.com/shenqiuhui/sqh-cli/tree/v0.2.0) (2023-03-18)
 
 - **publish:** @sqh-cli/add@0.1.1
